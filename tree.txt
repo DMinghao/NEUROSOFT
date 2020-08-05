@@ -1,0 +1,29 @@
+NEUROSOFT
+├───Main
+│   ├───backend
+│   │   ├───models
+│   │   │   ├───survey.model.js                 # ORM for survey object
+│   │   │   └───user.model.js                   # ORM for user object
+│   │   ├───node_modules
+│   │   ├───routes
+│   │   │   ├───survey.js                       # HTTP handler for survey
+│   │   │   └───user.js                         # HTTP handler for user
+│   │   ├───.env                                # Environemnt variables (i.e. DB connection token)
+│   │   └───server.js                           # Server runtime listener 
+│   ├───build
+│   ├───node_modules
+│   ├───public
+│   │   └───index.html                          # Main HTML render template
+│   ├───src
+│   │   ├───components
+│   │   │   ├───create-user.component.js        # Front end + control of create user page
+│   │   │   ├───edit-survey.component.js        # (not implemented)
+│   │   │   ├───Navbar.component.js             # Front end + control of global navigation bar component
+│   │   │   ├───new-survey.component.js         # Front end + control of create new survey page
+│   │   │   └───survey-list.component.js        # Front end + control of display survey page
+│   │   ├───App,js                              # Application component layout structure 
+│   │   └───index.js                            # Main file (rendering App to HTML template)
+│   └───README.md
+├───README.md                                   # Read me doc
+├───.gitignore
+└───tree.txt                                    # I am Groot

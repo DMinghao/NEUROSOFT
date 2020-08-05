@@ -4,14 +4,11 @@ import axios from 'axios';
 
 const Survey = props => (
   <tr>
-    <td>this will be a survey item</td>
-    {/* <td>{props.exercise.username}</td>
-    <td>{props.exercise.description}</td>
-    <td>{props.exercise.duration}</td>
-    <td>{props.exercise.date.substring(0,10)}</td>
+    <td>{props.survey._id}</td>
+    <td>{props.survey.result}</td>
     <td>
-      <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
-    </td> */}
+      <a href="#" onClick={() => { props.deleteSurvey(props.survey._id) }}>delete</a>
+    </td>
   </tr>
 )
 
@@ -19,7 +16,7 @@ export default class SurveyList extends Component {
   constructor(props) {
     super(props);
 
-    // this.deleteExercise = this.deleteExercise.bind(this)
+    this.deleteSurvey = this.deleteSurvey.bind(this)
 
     this.state = {surveys: []};
   }
@@ -27,21 +24,22 @@ export default class SurveyList extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/survey/')
       .then(response => {
-        this.setState({ survey: response.data })
+        this.setState({ surveys: response.data })
       })
       .catch((error) => {
         console.log(error);
       })
   }
 
-  // deleteSurvey(id) {
-  //   axios.delete('http://localhost:5000/survey/'+id)
-  //     .then(response => { console.log(response.data)});
+  deleteSurvey(id) {
+    axios.delete('http://localhost:5000/survey/'+id)
+      .then(response => { console.log(response.data)})
+      .catch(error => console.log(error));
 
-  //   this.setState({
-  //     surveys: this.state.surveys.filter(el => el._id !== id)
-  //   })
-  // }
+    this.setState({
+      surveys: this.state.surveys.filter(el => el._id !== id)
+    })
+  }
 
   surveyList() {
     return this.state.surveys.map(currentSurvey => {
@@ -56,11 +54,8 @@ export default class SurveyList extends Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
-              {/* <th>Username</th>
-              <th>Description</th>
-              <th>Duration</th>
-              <th>Date</th>
-              <th>Actions</th> */}
+              <th>ID</th>
+              <th>Result</th>
             </tr>
           </thead>
           <tbody>
