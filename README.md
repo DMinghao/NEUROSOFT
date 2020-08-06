@@ -86,6 +86,7 @@ Milestones | Description | Time | Completed
 Stage 1 | complete app structure | week 1 | ✅
 Stage 2 | complete DB connection and able communicate data with DB | week 2 | ✅
 Stage 3 | Improve UI design and prepare for Demo 1 | week 2 | pending 
+... | ... | ... | ... 
 
 
 </center>

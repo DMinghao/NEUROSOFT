@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+
 const Survey = props => (
   <tr>
     <td>{props.survey._id}</td>
-    <td>{props.survey.result}</td>
+    <td>{JSON.parse(props.survey.result).name}</td>
+    <td>{Date(JSON.parse(props.survey.result).birthday)}</td>
+    <td>{JSON.parse(props.survey.result).symptom}</td>
     <td>
-      <a href="#" onClick={() => { props.deleteSurvey(props.survey._id) }}>delete</a>
+      <Link to={"/viewEdit/"+props.survey._id}> View </Link>|
+      <a href="#" onClick={() => { props.deleteSurvey(props.survey._id) }}> Delete </a>
     </td>
   </tr>
 )
@@ -16,7 +20,7 @@ export default class SurveyList extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteSurvey = this.deleteSurvey.bind(this)
+    this.deleteSurvey = this.deleteSurvey.bind(this);
 
     this.state = {surveys: []};
   }
@@ -51,11 +55,14 @@ export default class SurveyList extends Component {
     return (
       <div>
         <h3>Logged Survey</h3>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
+        <table className="table" style = {{tableLayout: "fixed", wordWrap: "break-word"}}>
+          <thead className="thead-dark">
+            <tr >
               <th>ID</th>
-              <th>Result</th>
+              <th>Name</th>
+              <th>DOB</th>
+              <th>symptom(s)</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

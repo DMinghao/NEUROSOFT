@@ -17,7 +17,7 @@ NEUROSOFT
 │   ├───src
 │   │   ├───components
 │   │   │   ├───create-user.component.js        # Front end + control of create user page
-│   │   │   ├───edit-survey.component.js        # (not implemented)
+│   │   │   ├───viewEdit-survey.component.js    # (edit not implemented) view is avaliable 
 │   │   │   ├───Navbar.component.js             # Front end + control of global navigation bar component
 │   │   │   ├───new-survey.component.js         # Front end + control of create new survey page
 │   │   │   └───survey-list.component.js        # Front end + control of display survey page
