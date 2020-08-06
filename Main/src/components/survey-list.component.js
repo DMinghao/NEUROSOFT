@@ -7,7 +7,7 @@ const Survey = props => (
   <tr>
     <td>{props.survey._id}</td>
     <td>{JSON.parse(props.survey.result).name}</td>
-    <td>{Date(JSON.parse(props.survey.result).birthday)}</td>
+    <td>{Date(JSON.parse(props.survey.result).birthdate)}</td>
     <td>{JSON.parse(props.survey.result).symptom}</td>
     <td>
       <Link to={"/viewEdit/"+props.survey._id}> View </Link>|
