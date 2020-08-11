@@ -18,7 +18,7 @@ function App() {
       <Route path="/" exact component={SurveyList} />
       <Route path="/viewEdit/:id" component={ViewEditSurvey} />
       <Route path="/newSurvey" component={NewSurvey} />
-      <Route path="/user" component={CreateUser} />
+      <Route path="/user/register" component={CreateUser} />
     </div>
     </Router>
   );
