@@ -43,6 +43,11 @@ NEUROSOFT
 
 Download and install [Node.js](https://nodejs.org/)
 
+Run this command under NEUROSOFT folder: 
+```bash
+start cmd.exe /c "cd Main/backend && npm i" && start cmd.exe /c "cd Main && npm i"
+```
+
 ### Running the platform 
 
 1. Go to the backend folder
