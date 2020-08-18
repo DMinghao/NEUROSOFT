@@ -1,10 +1,10 @@
 # NeuroSoft Survey Platform 
 
 ## Description
-NeuroSoft survey platform 
+NeuroSoft is a medical surveying platform that allows surgeons to create, manage, and distribute medical treatment admission surveys to new and returning patients. The platform will utilize the MERN stack (MongoDB, Express, React, Node.js) to achieve all core functions and incorporate a conventional SQL database to achieve the medical report generation function. 
 
 ---
-## File Structure
+## File Structure (Not up to date)
 ```
 NEUROSOFT
 ├───Main
@@ -77,20 +77,22 @@ start cmd.exe /c "cd Main/backend && nodemon server" && start cmd.exe /c "cd Mai
 ```
 
 ---
-## Development Plan
+## Development Plan (Deprecated)
+For project management details, please see [trello](https://trello.com/nuerosoftware/home)
 
 ### End Goal
 
 To create commercial grade patient data management system with the function to automatically generate reports for surgeons 
 
 ### Schedule 
+
 <center>
 
 Milestones | Description | Time | Completed 
 -----------|-------------|------|----------
 Stage 1 | complete app structure | week 1 | ✅
 Stage 2 | complete DB connection and able communicate data with DB | week 2 | ✅
-Stage 3 | Improve UI design and prepare for Demo 1 | week 2 | pending 
+Stage 3 | Improve UI design and prepare for Demo 1 | week 2 | ✅
 ... | ... | ... | ... 
 
 
