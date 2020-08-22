@@ -7,7 +7,7 @@ const surveySchema = new Schema({
   paID : {
     type: String
   },
-  docID : {
+  surveyTempID : {
     type: String
   }
 }, {

@@ -77,28 +77,5 @@ start cmd.exe /c "cd Main/backend && nodemon server" && start cmd.exe /c "cd Mai
 ```
 
 ---
-## Development Plan (Deprecated)
-For project management details, please see [trello](https://trello.com/nuerosoftware/home)
-
-### End Goal
-
-To create commercial grade patient data management system with the function to automatically generate reports for surgeons 
-
-### Schedule 
-
-<center>
-
-Milestones | Description | Time | Completed 
------------|-------------|------|----------
-Stage 1 | complete app structure | week 1 | ✅
-Stage 2 | complete DB connection and able communicate data with DB | week 2 | ✅
-Stage 3 | Improve UI design and prepare for Demo 1 | week 2 | ✅
-... | ... | ... | ... 
-
-
-</center>
-
-### To-do
-- [ ] User register and login function 
-- [x] Display received survey on the page 
-- [ ] Generate document report
+## Development Plan 
+For project management details, please see [trello](https://trello.com/neurosoft/home)
