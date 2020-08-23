@@ -17,12 +17,16 @@ export default class Navbar extends Component {
               <Link to="/newSurvey" className="nav-link">New Survey</Link>
             </li>
           </ul>
+          <div>
+            <Link to="/user/register" style={{ color:"#ffffff", margin : "0.3rem" }}>
+              <button className="btn btn-secondary">Register</button>
+            </Link>
+            <Link to="/user/register" style={{ color:"#ffffff", margin : "0.3rem"}}>
+              <button className="btn btn-primary">Login</button>
+            </Link>
+          </div>
         </div>
-        <div>
-          <Link to="/user/register" style={{ color: "white" }}>
-            <button className="btn btn-primary">Register</button>
-          </Link>
-        </div>
+
       </nav>
     );
   }
