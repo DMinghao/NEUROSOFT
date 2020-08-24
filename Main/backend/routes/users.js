@@ -6,41 +6,34 @@ let User = require('../models/user.model');
 
 router.post("/register", async (req, res) => {
   try {
-    let { email, password, passwordCheck, userType, username } = req.body;
+    let { email, password, userType, firstname, lastname } = req.body;
 
     // validate
 
-    if (!email || !password || !passwordCheck || !userType)
+    if (!email || !password || !userType || !firstname || !lastname)
       return res.status(400).json({ msg: "Not all fields have been entered." });
-    if (password.length < 5)
-      return res
-        .status(400)
-        .json({ msg: "The password needs to be at least 5 characters long." });
-    if (password !== passwordCheck)
-      return res
-        .status(400)
-        .json({ msg: "Enter the same password twice for verification." });
-
+    
     const existingUser = await User.findOne({ email: email });
     if (existingUser)
       return res
         .status(400)
         .json({ msg: "An account with this email already exists." });
 
-    if (!username) username = email;
-
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
-
+    
     const newUser = new User({
       email,
       password: passwordHash,
       userType,
-      username,
+      firstname,
+      lastname
     });
+    
     const savedUser = await newUser.save();
     res.json(savedUser);
   } catch (err) {
+    console.log(err)
     res.status(500).json({ error: err.message });
   }
 });
@@ -67,7 +60,9 @@ router.post("/login", async (req, res) => {
       token,
       user: {
         id: user._id,
-        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
         userType: user.userType
       },
     });
@@ -105,7 +100,8 @@ router.post("/tokenIsValid", async (req, res) => {
 router.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json({
-    username: user.username,
+    firstname: user.firstname,
+    lastname: user.lastname,
     userType: user.userType,
     id: user._id,
   });

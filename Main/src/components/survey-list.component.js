@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import userContext from '../context/UserContext';
 
 const Survey = props => (
   <tr>
@@ -18,7 +20,7 @@ const Survey = props => (
 export default class SurveyList extends Component {
   constructor(props) {
     super(props);
-
+    
     this.deleteSurvey = this.deleteSurvey.bind(this);
 
     this.state = {surveys: []};
@@ -53,7 +55,8 @@ export default class SurveyList extends Component {
   render() {
     return (
       <div>
-        <h3>Logged Survey</h3>
+        <br/>
+        <h4>Logged Survey</h4>
         <table className="table" style = {{tableLayout: "fixed", wordWrap: "break-word"}}>
           <thead className="thead-dark">
             <tr >
