@@ -5,11 +5,13 @@ const surveySchema = new Schema({
     type: String
   },
   paID : {
-    type: String
+    type: mongoose.ObjectId, 
+    ref : "users"
   },
   surveyTempID : {
-    type: String
-  }
+    type: mongoose.ObjectId,
+    ref: "surveyTemp"
+  }, 
 }, {
   timestamps: true
 });

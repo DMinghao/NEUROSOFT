@@ -16,8 +16,12 @@ export default function Login() {
         e.preventDefault();
         try {
             const loginUser = { email, password };
+            // const loginRes = await Axios.post(
+            //     "http://localhost:5000/API/users/login",
+            //     loginUser
+            // );
             const loginRes = await Axios.post(
-                "http://localhost:5000/users/login",
+                "/API/users/login",
                 loginUser
             );
             setUserData({

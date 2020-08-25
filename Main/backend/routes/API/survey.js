@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let Survey = require('../models/survey.model');
+let Survey = require('../../models/survey/survey.model');
 
 router.route('/').get((req, res) => {
   Survey.find()

@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 
 import Navbar from "./components/Navbar.component";
-import SurveyList from "./components/survey-list.component";
-// import ViewEditSurvey from "./components/viewEdit-survey.component";
+// import SurveyList from "./components/survey-list.component";
+import ViewEditSurvey from "./components/viewEdit-survey.component";
 import NewSurvey from "./components/new-survey.component";
 import CreateUser from "./components/Auth/Create-user.component";
 import Login from "./components/Auth/Login.component";
@@ -31,12 +31,14 @@ function App() {
         token = "";
       }
       const tokenRes = await Axios.post(
-        "http://localhost:5000/users/tokenIsValid",
+        // "http://localhost:5000/users/tokenIsValid",
+        "/API/users/tokenIsValid",
         null,
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:5000/users/", {
+        // const userRes = await Axios.get("http://localhost:5000/users/", {
+          const userRes = await Axios.get("/API/users/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
@@ -59,14 +61,15 @@ function App() {
       <div className="container">
         <Navbar />
         <br />
-        <Route path="/" exact component={Home} />
-        <Route path="/about" exact component={About} />
-        <Route path="/docdash" component = {DocUserPage} />
-        <Route path="/padash" component = {PaUserPage} />
-        {/* <Route path="/viewEdit/:id" component={ViewEditSurvey} /> */}
-        <Route path="/newSurvey/:id" component={NewSurvey} />
-        <Route path="/register" component={CreateUser} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/register" component={CreateUser} />
+        <Route exact path="/login" component={Login} />
+
+        <Route exact path="/docdash" component = {DocUserPage} />
+        <Route exact path="/padash" component = {PaUserPage} />
+        <Route exact path="/viewEdit/:id" component={ViewEditSurvey} />
+        <Route exact path="/newSurvey/:id" component={NewSurvey} />
       </div>
       
     </Router>

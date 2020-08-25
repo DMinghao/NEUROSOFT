@@ -31,8 +31,13 @@ export default function CreateUsers() {
           userType: userType
         }
 
-        await axios.post('http://localhost:5000/users/register', user)
-        const loginRes = await axios.post("http://localhost:5000/users/login", {
+        // await axios.post('http://localhost:5000/API/users/register', user)
+        await axios.post('/API/users/register', user)
+        // const loginRes = await axios.post("http://localhost:5000/API/users/login", {
+        //   email,
+        //   password,
+        // });
+        const loginRes = await axios.post("/API/users/login", {
           email,
           password,
         });

@@ -27,7 +27,8 @@ export default class SurveyList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/survey/')
+    // axios.get('http://localhost:5000/API/survey/')
+    axios.get('/API/survey/')
       .then(response => {
         this.setState({ surveys: response.data })
       })
@@ -37,7 +38,8 @@ export default class SurveyList extends Component {
   }
 
   deleteSurvey(id) {
-    axios.delete('http://localhost:5000/survey/'+id)
+    // axios.delete('http://localhost:5000/API/survey/'+id)
+    axios.delete('/API/survey/'+id)
       .then(response => { console.log(response.data)})
       .catch(error => console.log(error));
 

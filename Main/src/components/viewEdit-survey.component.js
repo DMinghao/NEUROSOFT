@@ -39,7 +39,8 @@ export default class ViewEditSurvey extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/survey/' + this.props.match.params.id)
+        // axios.get('http://localhost:5000/API/survey/' + this.props.match.params.id)
+        axios.get('/API/survey/' + this.props.match.params.id)
             .then(response => {
                 const r = JSON.parse(response.data.result);
                 var result = {};

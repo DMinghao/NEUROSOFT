@@ -6,11 +6,24 @@ const questionTempSchema = new Schema({
     required : true, 
   },
   docID : {
-    type: String, 
+    type: ObjectId, 
     required : true
   },
   template : {
-    type: String
+    questionType: {
+      type:String, 
+      required : true
+    }, 
+    title:{
+      type:String, 
+      required:true
+    }, 
+    isRequired: {
+      type: String
+    }, 
+    inputType:{
+      type:String
+    }
   }
 }, {
   timestamps: true

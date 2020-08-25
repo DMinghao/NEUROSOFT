@@ -1558,7 +1558,8 @@ export default class NewSurvey extends Component {
     console.log("posting...");
     console.log(JSON.stringify(result.data, null, 3));
     const r = { "result": result.data }
-    axios.post('http://localhost:5000/survey/add', r)
+    // axios.post('http://localhost:5000/API/survey/add', r)
+    axios.post('/API/survey/add', r)
       .then(res => console.log(res.data))
       .catch(error => console.log(error));
 
