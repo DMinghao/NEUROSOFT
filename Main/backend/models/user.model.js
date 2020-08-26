@@ -29,17 +29,17 @@ const userSchema = new Schema({
   relatedUsers:[{
     userId:{
       type: Schema.Types.ObjectId, 
-      required : true,
+      // required : true,
       unique : true
     }, 
     startDate:{
       type: Date, 
-      required : true, 
+      // required : true, 
       default: Date.now
     }, 
     comfirmed:{
       type: Boolean, 
-      required: true, 
+      // required: true, 
       default: false
     }
   }]
