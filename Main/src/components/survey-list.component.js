@@ -6,7 +6,7 @@ import userContext from '../context/UserContext';
 
 const Survey = props => (
   <tr>
-    <td>{props.survey._id}</td>
+    <td>{props.survey.paID}</td>
     <td>{JSON.parse(props.survey.result).name}</td>
     <td>{Date(JSON.parse(props.survey.result).birthdate)}</td>
     <td>{JSON.parse(props.survey.result).symptom}</td>
@@ -62,7 +62,7 @@ export default class SurveyList extends Component {
         <table className="table" style = {{tableLayout: "fixed", wordWrap: "break-word"}}>
           <thead className="thead-dark">
             <tr >
-              <th>ID</th>
+              <th>Patient ID</th>
               <th>Name</th>
               <th>DOB</th>
               <th>symptom(s)</th>
