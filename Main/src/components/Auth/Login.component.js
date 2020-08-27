@@ -8,9 +8,14 @@ export default function Login() {
     const [password, setPassword] = useState();
     // const [error, setError] = useState();
 
-    const { setUserData } = useContext(UserContext);
+    const { userData, setUserData } = useContext(UserContext);
     const history = useHistory();
-
+    console.log(userData.user)
+    if (typeof userData.user !== "undefined"){
+        console.log(userData.user)
+        if (userData.user.userType === "patient") history.push("/padash/");
+        if (userData.user.userType === "doctor") history.push("/docdash/");
+    }
 
     const submit = async (e) => {
         e.preventDefault();
@@ -29,9 +34,10 @@ export default function Login() {
                 user: loginRes.data.user,
             });
             localStorage.setItem("auth-token", loginRes.data.token);
-            if(loginRes.data.user.userType === "patient") history.push("/padash");
-            if(loginRes.data.user.userType === "doctor") history.push("/docdash");
+            if (loginRes.data.user.userType === "patient") history.push("/padash/");
+            if (loginRes.data.user.userType === "doctor") history.push("/docdash/");
         } catch (err) {
+            console.log(err.response.data.msg)
             // err.response.data.msg && setError(err.response.data.msg);
         }
     };

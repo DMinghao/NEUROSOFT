@@ -69,7 +69,7 @@ function App() {
         <Route exact path="/docdash" component = {DocUserPage} />
         <Route exact path="/padash" component = {PaUserPage} />
         <Route exact path="/viewEdit/:id" component={ViewEditSurvey} />
-        <Route exact path="/newSurvey/:id" component={NewSurvey} />
+        <Route exact path="/newSurvey" component={NewSurvey} />
       </div>
       
     </Router>

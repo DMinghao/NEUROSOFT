@@ -8,7 +8,7 @@ const surveyTempSchema = new Schema({
   docID: {
     type: mongoose.ObjectId,
     ref: "users",
-    required: true
+    // required: true
   },
   pages: [{
     pageName: {

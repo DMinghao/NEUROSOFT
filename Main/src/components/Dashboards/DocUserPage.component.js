@@ -7,7 +7,8 @@ import UserContext from "../../context/UserContext";
 export default function DocUserPage() {
     const history = useHistory();
     const { userData, setUserData } = useContext(UserContext);
-    if (!userData.user) return (<h3>Access restricted</h3>)
+    // console.log(userData)
+    if (typeof userData.user === "undefined") history.push("/login");
 
     return (
         <div>
