@@ -4,31 +4,53 @@
 NeuroSoft is a medical surveying platform that allows surgeons to create, manage, and distribute medical treatment admission surveys to new and returning patients. The platform will utilize the MERN stack (MongoDB, Express, React, Node.js) to achieve all core functions and incorporate a conventional SQL database to achieve the medical report generation function. 
 
 ---
-## File Structure (Not up to date)
+## File Structure
 ```
 NEUROSOFT
 ├───Main
 │   ├───backend
+│   │   ├───middleware
+│   │   │   └───auth.js                         # 
 │   │   ├───models
-│   │   │   ├───survey.model.js                 # ORM for survey object
+│   │   │   ├───survey                          
+│   │   │   │   ├───pageTemp.model.js           # 
+│   │   │   │   ├───questionTemp.model.js       # 
+│   │   │   │   ├───survey.model.js             # ORM for survey object
+│   │   │   │   └───surveyTemp.model.js         # 
 │   │   │   └───user.model.js                   # ORM for user object
 │   │   ├───node_modules
 │   │   ├───routes
-│   │   │   ├───survey.js                       # HTTP handler for survey
-│   │   │   └───user.js                         # HTTP handler for user
+│   │   │   └───API                             
+│   │   │       ├───survey.js                   # HTTP handler for survey
+│   │   │       ├───template.js                 # 
+│   │   │       └───user.js                     # HTTP handler for user
 │   │   ├───.env                                # Environemnt variables (i.e. DB connection token)
 │   │   └───server.js                           # Server runtime listener 
-│   ├───build
+│   ├───build                                   #
 │   ├───node_modules
 │   ├───public
+│   │   ├───robots.txt                          # 
 │   │   └───index.html                          # Main HTML render template
 │   ├───src
 │   │   ├───components
-│   │   │   ├───create-user.component.js        # Front end + control of create user page
-│   │   │   ├───edit-survey.component.js        # (not implemented)
+│   │   │   ├───AdminComponents
+│   │   │   │   ├───AdminNav.component.js       # 
+│   │   │   │   ├───SurveyMGT.component.js      # 
+│   │   │   │   └───UserMGT.component.js        # 
+│   │   │   ├───Auth
+│   │   │   │   ├───Create-user.component.js    # 
+│   │   │   │   └───Login.component.js          # 
+│   │   │   ├───Dashboards
+│   │   │   │   ├───DocUserPage.component.js    # 
+│   │   │   │   └───PaUserPage.component.js     # 
+│   │   │   ├───About.component.js              # 
+│   │   │   ├───Home.component.js               # 
+│   │   │   ├───ViewEdit-survey.component.js    #
 │   │   │   ├───Navbar.component.js             # Front end + control of global navigation bar component
 │   │   │   ├───new-survey.component.js         # Front end + control of create new survey page
 │   │   │   └───survey-list.component.js        # Front end + control of display survey page
+│   │   ├───Context                             # 
+│   │   │   └───UserContext.js                  # 
 │   │   ├───App,js                              # Application component layout structure 
 │   │   └───index.js                            # Main file (rendering App to HTML template)
 │   └───README.md
@@ -76,6 +98,37 @@ If you are lazy like me use this command under NEUROSOFT folder:
 start cmd.exe /c "cd Main/backend && nodemon server" && start cmd.exe /c "cd Main && npm start"
 ```
 
+### Deploy to AWS
+1. **MAKE SURE EVERYTHING IS WORKING**
+2. Change MODE variable in .env file 
+    ```
+    MODE = BUILD
+    ```
+3. Commit to remote repo
+    ```git
+    git commit -m "Deploy Build"
+    ```
+4. Login to AWS EC2 instance 
+5. Navigate to /var/www/NEUROSOFT folder
+    ```bash
+    cd /var/www/NEUROSOFT
+    ```
+6. Pull repo to EC2 (remote repo username & password required)
+    ```git
+    sudo git pull 
+    ```
+7. Navigate to Main folder and build 
+    ```bash
+    cd /var/www/NEUROSOFT/Main && sudo npm run build
+    ```
+8. Restart PM2 backend process 
+    ```bash
+    cd /var/www/NEUROSOFT/Main/backend && sudo pm2 stop all && sudo pm2 delete all && sudo pm2 start server.js 
+    ```
+9. Restart Nginx 
+    ```bash
+    sudo service nginx stop && sudo service nginx start
+    ```
 ---
 ## Development Plan 
 For project management details, please see [trello](https://trello.com/neurosoft/home)
