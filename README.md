@@ -115,7 +115,7 @@ start cmd.exe /c "cd Main/backend && nodemon server" && start cmd.exe /c "cd Mai
     ```
 6. Pull repo to EC2 (remote repo username & password required)
     ```git
-    sudo git pull 
+    git pull 
     ```
 7. Navigate to Main folder and build 
     ```bash

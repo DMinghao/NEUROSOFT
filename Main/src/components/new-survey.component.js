@@ -297,9 +297,7 @@ export default function NewSurvey() {
             ]
           }
         ]
-      },
-
-      {
+      }, {
         "name": "page5",
         title: "Back Pain",
         visibleIf: "{symptom} contains 'Back Pain'",
