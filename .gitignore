@@ -72,4 +72,7 @@ typings/
 .env.test.local
 .env.production.local
 
+Design/*.vpp.vbak
+Design/*.vpp.*
+
 /build
