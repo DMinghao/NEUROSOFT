@@ -57,7 +57,6 @@ function App() {
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
     <Router>
-      
       <div className="container">
         <Navbar />
         <br />
