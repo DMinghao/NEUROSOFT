@@ -63,40 +63,59 @@ NEUROSOFT
 
 ### Dependencies
 
-Download and install [Node.js](https://nodejs.org/)
+1. Download and install [Node.js](https://nodejs.org/)
+2. Open terminal and access the **NEUROSOFT** folder
+3. Run setup commend
+    1. For Windows, run this shortcut command under **NEUROSOFT** folder:
+        ```bash
+        start cmd.exe /c "cd Main/backend && npm i" && start cmd.exe /c "cd Main && npm i"
+        ```
+    2. For Mac, run this shortcut command under **NEUROSOFT** folder:
+        ```bash
+        cd Main ; sudo npm i ; cd backend ; sudo npm i
+        ```
 
-Run this command under NEUROSOFT folder: 
-```bash
-start cmd.exe /c "cd Main/backend && npm i" && start cmd.exe /c "cd Main && npm i"
-```
 
 ### Running the platform 
+1. For Windows:
+    1. Run this shortcut command under **NEUROSOFT** folder: 
+        ```bash
+        start cmd.exe /c "cd Main/backend && nodemon server" && start cmd.exe /c "cd Main && npm start"
+        ```
+    2. If the shortcut command does not work, do those steps:
+        1. Go to the **backend** folder
+            ```bash
+            cd Main\backend
+            ```
+        2. Start a local server 
+            ```bash
+            nodemon server
+            ```
+        3. Start a **new terminal**
+        4. Go to the **Main** folder
+            ```bash
+            cd Main
+            ```
+        5. Start the application 
+            ```bash
+            npm start
+            ```
 
-1. Go to the backend folder
-    ```bash
-    cd Main\backend
-    ```
-2. Start a local server 
-    ```bash
-    nodemon server
-    ```
-3. Start a **new terminal**
-4. Go to the Main folder
-    ```bash
-    cd Main
-    ```
-5. Start the application 
-    ```bash
-    npm start
-    ```
-6. If not automatically opened, in your browser go to the address below 
+2. For Mac:
+    1. Run this shortcut command under **NEUROSOFT** folder: 
+        ```bash
+        cd Main ; npm start
+        ```
+    2. Use keyboard shortcut to creat a **new tab** on terminal
+        <kbd>⌘ Command</kbd> + <kbd>T</kbd>
+    3. Run this short command on new tab under **Main** folder:
+        ```bash
+        cd backend ; node server
+        ```
+3. If not automatically opened, in your browser go to the address below 
     ```HTML
     http://localhost:3000/
     ```
-If you are lazy like me use this command under NEUROSOFT folder: 
-```bash
-start cmd.exe /c "cd Main/backend && nodemon server" && start cmd.exe /c "cd Main && npm start"
-```
 
 ### Deploy to AWS
 1. **MAKE SURE EVERYTHING IS WORKING**
