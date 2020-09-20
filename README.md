@@ -104,13 +104,13 @@ NEUROSOFT
 2. For Mac:
     1. Run this shortcut command under **NEUROSOFT** folder: 
         ```bash
-        cd Main ; npm start
+        cd Main/backend ; node server
         ```
-    2. Use keyboard shortcut to creat a **new tab** on terminal
+    2. Use keyboard shortcut to creat a **new tab** on terminal:
         <kbd>⌘ Command</kbd> + <kbd>T</kbd>
     3. Run this short command on new tab under **Main** folder:
         ```bash
-        cd backend ; node server
+        cd Main ; npm start
         ```
 3. If not automatically opened, in your browser go to the address below 
     ```HTML
