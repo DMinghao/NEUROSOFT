@@ -106,7 +106,7 @@ NEUROSOFT
         ```bash
         cd Main/backend ; node server
         ```
-    2. Use keyboard shortcut to creat a **new tab** on terminal:
+    2. Use keyboard shortcut to creat a **new tab** on terminal:<br/>
         <kbd>⌘ Command</kbd> + <kbd>T</kbd>
     3. Run this short command on new tab under **Main** folder:
         ```bash
