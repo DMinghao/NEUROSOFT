@@ -39,7 +39,7 @@ export default function Navbar() {
           {userData.user ? (
             <>
               {userData.user.userType === "doctor" ? (
-                <Link to={"/docdash/"} style={{ color: "#ffffff", margin: "0.3rem" }}>
+                <Link to={"/docdash"} style={{ color: "#ffffff", margin: "0.3rem" }}>
                   <button className="btn btn-outline-info">Dashboard</button>
                 </Link>
               ) : (

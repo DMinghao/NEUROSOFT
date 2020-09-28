@@ -65,19 +65,21 @@ NEUROSOFT
 
 1. Download and install [Node.js](https://nodejs.org/)
 2. Open terminal and access the **NEUROSOFT** folder
-3. Run setup commend
-    1. For Windows, run this shortcut command under **NEUROSOFT** folder:
+3. Run setup commend under **NEUROSOFT** folder:
+    * For Windows
+
         ```bash
         start cmd.exe /c "cd Main/backend && npm i" && start cmd.exe /c "cd Main && npm i"
         ```
-    2. For Mac, run this shortcut command under **NEUROSOFT** folder:
+    * For MAC
+
         ```bash
         cd Main ; sudo npm i ; cd backend ; sudo npm i
         ```
 
-
 ### Running the platform 
-1. For Windows:
+* <details><summary>For Windows</summary>
+
     1. Run this shortcut command under **NEUROSOFT** folder: 
         ```bash
         start cmd.exe /c "cd Main/backend && nodemon server" && start cmd.exe /c "cd Main && npm start"
@@ -101,7 +103,10 @@ NEUROSOFT
             npm start
             ```
 
-2. For Mac:
+</details>
+
+* <details><summary>For MAC</summary>
+
     1. Run this shortcut command under **NEUROSOFT** folder: 
         ```bash
         cd Main/backend ; node server
@@ -112,7 +117,10 @@ NEUROSOFT
         ```bash
         cd Main ; npm start
         ```
-3. If not automatically opened, in your browser go to the address below 
+
+</details>
+
+* If not automatically opened, in your browser go to the address below 
     ```HTML
     http://localhost:3000/
     ```

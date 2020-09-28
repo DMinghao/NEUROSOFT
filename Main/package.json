@@ -17,6 +17,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
     "react-survey": "^1.7.0",
+    "rsuite": "^4.8.2",
     "survey-react": "^1.7.25"
   },
   "scripts": {

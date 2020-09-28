@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 
 import Navbar from "./components/Navbar.component";
 // import SurveyList from "./components/survey-list.component";
-import ViewEditSurvey from "./components/viewEdit-survey.component";
-import NewSurvey from "./components/new-survey.component";
+import ViewEditSurvey from "./components/Dashboards/Doctor/viewEdit-survey.component";
+import NewSurvey from "./components/Dashboards/Patient/new-survey.component";
 import CreateUser from "./components/Auth/Create-user.component";
 import Login from "./components/Auth/Login.component";
 import Home from "./components/Home.component";
 import About from "./components/About.component";
-import DocUserPage from "./components/Dashboards/DocUserPage.component";
-import PaUserPage from "./components/Dashboards/PaUserPage.component";
+import DocUserPage from "./components/Dashboards/Doctor/DocUserPage.component";
+import PaUserPage from "./components/Dashboards/Patient/PaUserPage.component";
 
 import UserContext from "./context/UserContext";
 // import index from "./components/index";
@@ -65,7 +65,7 @@ function App() {
         <Route exact path="/register" component={CreateUser} />
         <Route exact path="/login" component={Login} />
 
-        <Route exact path="/docdash" component = {DocUserPage} />
+        <Route path="/docdash" component = {DocUserPage} />
         <Route exact path="/padash" component = {PaUserPage} />
         <Route exact path="/viewEdit/:id" component={ViewEditSurvey} />
         <Route exact path="/newSurvey" component={NewSurvey} />

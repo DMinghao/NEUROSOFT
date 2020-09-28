@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
-import UserContext from "../../context/UserContext";
+import UserContext from "../../../context/UserContext";
 
 export default function PaUserPage() {
     const history = useHistory();

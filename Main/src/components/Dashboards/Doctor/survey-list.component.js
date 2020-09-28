@@ -2,7 +2,7 @@ import React, { Component, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
-import userContext from '../context/UserContext';
+import userContext from '../../../context/UserContext';
 
 const Survey = props => (
   <tr>

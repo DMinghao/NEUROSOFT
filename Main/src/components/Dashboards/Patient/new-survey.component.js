@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 import { useHistory } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import UserContext from "../../../context/UserContext";
 import * as Survey from "survey-react";
 
 export default function NewSurvey() {

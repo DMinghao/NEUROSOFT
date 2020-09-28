@@ -10,9 +10,9 @@ export default function Login() {
 
     const { userData, setUserData } = useContext(UserContext);
     const history = useHistory();
-    console.log(userData.user)
+    // console.log(userData.user)
     if (typeof userData.user !== "undefined"){
-        console.log(userData.user)
+        // console.log(userData.user)
         if (userData.user.userType === "patient") history.push("/padash/");
         if (userData.user.userType === "doctor") history.push("/docdash/");
     }
