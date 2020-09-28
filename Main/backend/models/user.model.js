@@ -27,22 +27,9 @@ const userSchema = new Schema({
     required: true
   },
   relatedUsers:[{
-    userId:{
       type: Schema.Types.ObjectId, 
-      // required : true,
-      unique : true
-    }, 
-    startDate:{
-      type: Date, 
-      // required : true, 
-      default: Date.now
-    }, 
-    comfirmed:{
-      type: Boolean, 
-      // required: true, 
-      default: false
-    }
-  }]
+      ref: 'User'
+    }]
 }, {
   timestamps: true,
 });

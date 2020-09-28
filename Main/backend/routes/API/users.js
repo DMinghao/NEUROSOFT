@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
 let User = require('../../models/user.model');
+const mongoose = require('mongoose');
 
 // register a new user
 router.post("/register", async (req, res) => {
@@ -153,5 +154,51 @@ router.get("/", auth, async (req, res) => {
     id: user._id,
   });
 });
+
+//modify doctor's account document to add patient's user id
+//modify patient's account document to add doctor's user id
+router.post("/linkuser", auth, async (req, res) => {
+  try {
+    const { PatientUserID, DoctorUserID } = req.body
+    console.log(PatientUserID)
+    const Pa = await User.findById(PatientUserID)
+    const Doc = await User.findById(DoctorUserID)
+
+
+    if(Doc.relatedUsers.includes(PatientUserID)){
+      return res
+        .status(400)
+        .json({ msg: "Link between "+DoctorUserID+" and "+ PatientUserID+" already exist"});
+    }
+
+    if (Pa && Doc) {
+      User.findByIdAndUpdate(
+        PatientUserID,
+        { $push: { "relatedUsers":  DoctorUserID  } },
+        { safe: true, upsert: true, new: true },
+        function (err, model) {
+          console.log(err);
+        }
+      )
+      User.findByIdAndUpdate(
+        DoctorUserID,
+        { $push: { "relatedUsers":  PatientUserID  } },
+        { safe: true, upsert: true, new: true },
+        function (err, model) {
+          console.log(err);
+        }
+      )
+      res.status(200).json({ msg: "link created between "+DoctorUserID+" and "+ PatientUserID});
+    } else {
+      return res
+        .status(400)
+        .json({ msg: "User Not found" });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ error: err.message });
+  }
+})
 
 module.exports = router;
