@@ -145,13 +145,23 @@ router.post("/tokenIsValid", async (req, res) => {
   }
 });
 
+//get one user by id
 router.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json({
     firstname: user.firstname,
     lastname: user.lastname,
+    email: user.email,
     userType: user.userType,
     id: user._id,
+  });
+});
+
+//get relatedUsers
+router.get("/allRelated", auth, async (req, res) => {
+  const user = await User.findById(req.user);
+  res.json({
+    relatedUsers: user.relatedUsers
   });
 });
 
@@ -165,16 +175,16 @@ router.post("/linkuser", auth, async (req, res) => {
     const Doc = await User.findById(DoctorUserID)
 
 
-    if(Doc.relatedUsers.includes(PatientUserID)){
+    if (Doc.relatedUsers.includes(PatientUserID)) {
       return res
         .status(400)
-        .json({ msg: "Link between "+DoctorUserID+" and "+ PatientUserID+" already exist"});
+        .json({ msg: "Link between " + DoctorUserID + " and " + PatientUserID + " already exist" });
     }
 
     if (Pa && Doc) {
       User.findByIdAndUpdate(
         PatientUserID,
-        { $push: { "relatedUsers":  DoctorUserID  } },
+        { $push: { "relatedUsers": DoctorUserID } },
         { safe: true, upsert: true, new: true },
         function (err, model) {
           console.log(err);
@@ -182,23 +192,78 @@ router.post("/linkuser", auth, async (req, res) => {
       )
       User.findByIdAndUpdate(
         DoctorUserID,
-        { $push: { "relatedUsers":  PatientUserID  } },
+        { $push: { "relatedUsers": PatientUserID } },
         { safe: true, upsert: true, new: true },
         function (err, model) {
           console.log(err);
         }
       )
-      res.status(200).json({ msg: "link created between "+DoctorUserID+" and "+ PatientUserID});
+      return res.status(200).json()
     } else {
       return res
         .status(400)
         .json({ msg: "User Not found" });
     }
+
   } catch (err) {
     res
       .status(500)
       .json({ error: err.message });
   }
+})
+
+//unlink doctor and patient
+router.post("/unlinkuser", auth, async (req, res) => {
+  try {
+    const { PatientUserID, DoctorUserID } = req.body
+    console.log(PatientUserID)
+    const Pa = await User.findById(PatientUserID)
+    const Doc = await User.findById(DoctorUserID)
+
+    if (Pa && Doc && Doc.relatedUsers.includes(PatientUserID)) {
+      User.findByIdAndUpdate(
+        PatientUserID,
+        { $pull: { "relatedUsers": DoctorUserID } },
+        { safe: true, upsert: true, new: true },
+        function (err, model) {
+          console.log(err);
+        }
+      )
+      User.findByIdAndUpdate(
+        DoctorUserID,
+        { $pull: { "relatedUsers": PatientUserID } },
+        { safe: true, upsert: true, new: true },
+        function (err, model) {
+          console.log(err);
+        }
+      )
+      return res.status(200).json()
+    } else {
+      return res
+        .status(400)
+        .json({ msg: "Link does not exist" });
+    }
+    
+  } catch (err) {
+    res
+      .status(500)
+      .json({ error: err.message });
+  }
+})
+
+//get all patients
+router.get("/AllPa", auth, async (req, res) => {
+  const all = await User.find(
+    { userType: "patient" },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        const docs = result.map(({ _doc }) => _doc)
+        const out = docs.map(({ password, createdAt, updatedAt, __v, ...rest }) => rest)
+        res.json(out);
+      }
+    })
 })
 
 module.exports = router;
