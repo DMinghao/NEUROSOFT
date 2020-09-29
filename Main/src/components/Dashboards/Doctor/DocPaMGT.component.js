@@ -29,7 +29,7 @@ export default function DocPaMGT() {
     const [NotLinkedPa, setNotLinkedPa] = useState([])
 
     const updateRelatedData = async () => {
-        await axios.get('/API/users/allRelated', {
+        await axios.get('/API/users/allRelated/', {
             headers: {
                 'x-auth-token': userData.token
             }
@@ -41,7 +41,7 @@ export default function DocPaMGT() {
     }
 
     const updateAllPaData = async () => {
-        await axios.get('/API/users/AllPa', {
+        await axios.get('/API/users/AllPa/', {
             headers: {
                 'x-auth-token': userData.token
             }
@@ -83,7 +83,6 @@ export default function DocPaMGT() {
                 }).catch((e) => {
                     console.log(e);
                 })
-            updateRelatedData()
         } else {
             const payload = {
                 DoctorUserID: userData.user.id,
@@ -100,8 +99,8 @@ export default function DocPaMGT() {
                 }).catch((e) => {
                     console.log(e);
                 })
-            updateRelatedData()
         }
+        updateRelatedData()
     }
 
     return (
