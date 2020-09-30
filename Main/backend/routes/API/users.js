@@ -157,7 +157,7 @@ router.get("/", auth, async (req, res) => {
   });
 });
 
-//get relatedUsers
+//get all related users of a user
 router.get("/allRelated", auth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json({
@@ -165,23 +165,28 @@ router.get("/allRelated", auth, async (req, res) => {
   });
 });
 
+// link a doctor and a patient
 //modify doctor's account document to add patient's user id
 //modify patient's account document to add doctor's user id
 router.post("/linkuser", auth, async (req, res) => {
   try {
+    // get the doctor and the patient
     const { PatientUserID, DoctorUserID } = req.body
     console.log(PatientUserID)
     const Pa = await User.findById(PatientUserID)
     const Doc = await User.findById(DoctorUserID)
 
-
+    // check if this doctor already link with this patient
     if (Doc.relatedUsers.includes(PatientUserID)) {
       return res
         .status(400)
         .json({ msg: "Link between " + DoctorUserID + " and " + PatientUserID + " already exist" });
     }
 
+    // link doctor and patient
     if (Pa && Doc) {
+
+      // update patient's information
       User.findByIdAndUpdate(
         PatientUserID,
         { $push: { "relatedUsers": DoctorUserID } },
@@ -190,6 +195,8 @@ router.post("/linkuser", auth, async (req, res) => {
           console.log(err);
         }
       )
+
+      // update doctor's information
       User.findByIdAndUpdate(
         DoctorUserID,
         { $push: { "relatedUsers": PatientUserID } },
@@ -198,6 +205,7 @@ router.post("/linkuser", auth, async (req, res) => {
           console.log(err);
         }
       )
+
       return res.status(200).json()
     } else {
       return res
@@ -212,15 +220,21 @@ router.post("/linkuser", auth, async (req, res) => {
   }
 })
 
-//unlink doctor and patient
+// Unlink a doctor and a patient
+//modify doctor's account document to delete patient's user id
+//modify patient's account document to delete doctor's user id
 router.post("/unlinkuser", auth, async (req, res) => {
   try {
+    // get the doctor and the patient
     const { PatientUserID, DoctorUserID } = req.body
     console.log(PatientUserID)
     const Pa = await User.findById(PatientUserID)
     const Doc = await User.findById(DoctorUserID)
 
+    // check if this doctor links with this patient, and unlink them
     if (Pa && Doc && Doc.relatedUsers.includes(PatientUserID)) {
+
+      // update patient's information
       User.findByIdAndUpdate(
         PatientUserID,
         { $pull: { "relatedUsers": DoctorUserID } },
@@ -229,6 +243,8 @@ router.post("/unlinkuser", auth, async (req, res) => {
           console.log(err);
         }
       )
+
+      // update doctor's information
       User.findByIdAndUpdate(
         DoctorUserID,
         { $pull: { "relatedUsers": PatientUserID } },
@@ -237,6 +253,7 @@ router.post("/unlinkuser", auth, async (req, res) => {
           console.log(err);
         }
       )
+
       return res.status(200).json()
     } else {
       return res
@@ -251,7 +268,7 @@ router.post("/unlinkuser", auth, async (req, res) => {
   }
 })
 
-//get all patients
+// get a list of a doctor's all patients
 router.get("/AllPa", auth, async (req, res) => {
   const all = await User.find(
     { userType: "patient" },
