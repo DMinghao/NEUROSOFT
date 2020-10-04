@@ -28,7 +28,8 @@ const userSchema = new Schema({
   },
   relatedUsers:[{
       type: Schema.Types.ObjectId, 
-      ref: 'User'
+      ref: 'User',
+      unique: true
     }]
 }, {
   timestamps: true,

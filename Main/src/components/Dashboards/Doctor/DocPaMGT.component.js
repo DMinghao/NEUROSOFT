@@ -11,11 +11,10 @@ const PaInfoCard = ({ pa, status, LinkUnlink }) => {
             <td>{pa.email}</td>
             <td>
                 <button
-                className = {status?"btn btn-danger":"btn btn-success"} 
-                onClick={(e) => {
-                    e.target.disabled = true
-                    LinkUnlink(pa, status)
-                }}>{status ? "-" : "+"}</button>
+                    className={status ? "btn btn-danger" : "btn btn-success"}
+                    onClick={(e) => {
+                        LinkUnlink(e, pa, status)
+                    }}>{status ? "-" : "+"}</button>
             </td>
         </tr>
     )
@@ -66,7 +65,9 @@ export default function DocPaMGT() {
         }))
     }, [AllPa, RelatedID])
 
-    const LinkUnlink = async (pa, status) => {
+    const LinkUnlink = async (e, pa, status) => {
+        e.preventDefault()
+        e.target.disabled = true
         if (status) {
             const payload = {
                 DoctorUserID: userData.user.id,

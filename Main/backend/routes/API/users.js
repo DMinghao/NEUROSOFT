@@ -172,7 +172,6 @@ router.post("/linkuser", auth, async (req, res) => {
   try {
     // get the doctor and the patient
     const { PatientUserID, DoctorUserID } = req.body
-    console.log(PatientUserID)
     const Pa = await User.findById(PatientUserID)
     const Doc = await User.findById(DoctorUserID)
 
@@ -185,14 +184,15 @@ router.post("/linkuser", auth, async (req, res) => {
 
     // link doctor and patient
     if (Pa && Doc) {
-
+      console.log("1")
       // update patient's information
       User.findByIdAndUpdate(
         PatientUserID,
         { $push: { "relatedUsers": DoctorUserID } },
         { safe: true, upsert: true, new: true },
         function (err, model) {
-          console.log(err);
+          // console.log(model)
+          if(err)console.log(err);
         }
       )
 
@@ -202,7 +202,8 @@ router.post("/linkuser", auth, async (req, res) => {
         { $push: { "relatedUsers": PatientUserID } },
         { safe: true, upsert: true, new: true },
         function (err, model) {
-          console.log(err);
+          // console.log(model)
+          if(err)console.log(err);
         }
       )
 
@@ -227,7 +228,6 @@ router.post("/unlinkuser", auth, async (req, res) => {
   try {
     // get the doctor and the patient
     const { PatientUserID, DoctorUserID } = req.body
-    console.log(PatientUserID)
     const Pa = await User.findById(PatientUserID)
     const Doc = await User.findById(DoctorUserID)
 
@@ -240,7 +240,8 @@ router.post("/unlinkuser", auth, async (req, res) => {
         { $pull: { "relatedUsers": DoctorUserID } },
         { safe: true, upsert: true, new: true },
         function (err, model) {
-          console.log(err);
+          console.log(model)
+          if(err)console.log(err);
         }
       )
 
@@ -250,7 +251,8 @@ router.post("/unlinkuser", auth, async (req, res) => {
         { $pull: { "relatedUsers": PatientUserID } },
         { safe: true, upsert: true, new: true },
         function (err, model) {
-          console.log(err);
+          console.log(model)
+          if(err)console.log(err);
         }
       )
 
