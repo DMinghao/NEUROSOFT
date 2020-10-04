@@ -152,10 +152,10 @@ NEUROSOFT
     ```bash
     cd /var/www/NEUROSOFT/Main/backend && sudo pm2 stop all && sudo pm2 delete all && sudo pm2 start server.js 
     ```
-9. Restart Nginx 
+<!-- 9. Restart Nginx 
     ```bash
     sudo service nginx stop && sudo service nginx start
-    ```
+    ``` -->
 ---
 ## Development Plan 
 For project management details, please see [trello](https://trello.com/neurosoft/home)
