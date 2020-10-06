@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const surveyTempSchema = new Schema({
-  surveyTempName: {
+  title: {
     type: String,
-    required: true,
+    required: true, 
+    unique: true
+  },
+  description: {
+    type: String
   },
   docID: {
     type: mongoose.ObjectId,
@@ -11,11 +15,11 @@ const surveyTempSchema = new Schema({
     // required: true
   },
   pages: [{
-    pageName: {
+    name: {
       type: String, 
       requied : true
     },
-    questions : [{
+    elements : [{
       questionID : {
         type: mongoose.ObjectId, 
         ref : "questionTemp"

@@ -7,12 +7,14 @@ const questionTempSchema = new Schema({
   },
   docID : {
     type: ObjectId, 
+    ref: "Users",
     required : true
   },
   template : {
     questionType: {
       type:String, 
-      required : true
+      required : true, 
+      trim: true
     }, 
     title:{
       type:String, 
