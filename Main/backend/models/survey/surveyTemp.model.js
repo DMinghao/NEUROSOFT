@@ -1,18 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const surveyTempSchema = new Schema({
+  //
+  //Do I need surveytempID here?
   title: {
     type: String,
     required: true, 
     unique: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
+  },
+  date:{
+    type: String,
+    required: true
   },
   docID: {
-    type: mongoose.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "users",
-    // required: true
+    required: true
   },
   pages: [{
     name: {
@@ -21,7 +28,7 @@ const surveyTempSchema = new Schema({
     },
     elements : [{
       questionID : {
-        type: mongoose.ObjectId, 
+        type: Schema.Types.ObjectId, 
         ref : "questionTemp"
       }
     }, ]
