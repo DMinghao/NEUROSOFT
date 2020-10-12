@@ -13,7 +13,7 @@ const surveySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "surveyTemp", 
     // required : true,
-  }
+  } //add survey distribution
 }, {
   timestamps: true
 });
