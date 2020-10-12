@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import DocDashSideNav from "./DocDashSideNav.component"
 import UserContext from "../../../context/UserContext";
 import DocPaMGT from './DocPaMGT.component'
+import DocSurveyTemplate from './DocSurveyTemplate.component'
 
 export default function DocUserPage() {
     const history = useHistory();
@@ -23,6 +24,8 @@ export default function DocUserPage() {
         switch (currentPage) {
             case 'Dashboard':
                 return dashContent();
+            case 'DocSurveyTemplate':
+                return <DocSurveyTemplate/>
             case 'ReceivedSurvey':
                 return <SurveyList/>
             case 'PatientMGT': 

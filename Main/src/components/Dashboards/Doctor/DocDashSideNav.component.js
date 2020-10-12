@@ -26,12 +26,15 @@ export default function DocDashSideNav(props) {
                 updatePage('PatientMGT');
                 break;
             case "3-1":
-                updatePage('SurveyTemp');
+                updatePage('DocSurveyTemplate');
                 break;
             case "3-2":
-                updatePage('SurveyDist');
+                updatePage('SurveyTemp');
                 break;
             case "3-3":
+                updatePage('SurveyDist');
+                break;
+            case "3-4":
                 updatePage('ReceivedSurvey'); 
                 break;
             case "4-1":
@@ -61,9 +64,10 @@ export default function DocDashSideNav(props) {
                             Patient Management
                         </Nav.Item>
                         <Dropdown eventKey="3" title="Survey" icon={<Icon icon="file-text-o" />}>
-                            <Dropdown.Item eventKey="3-1">Templates</Dropdown.Item> 
-                            <Dropdown.Item eventKey="3-2">Distribution</Dropdown.Item>
-                            <Dropdown.Item eventKey="3-3">Received Survey</Dropdown.Item>
+                            <Dropdown.Item eventKey="3-1">Templates</Dropdown.Item>
+                            <Dropdown.Item eventKey="3-2">Template Creator</Dropdown.Item> 
+                            <Dropdown.Item eventKey="3-3">Distribution</Dropdown.Item>
+                            <Dropdown.Item eventKey="3-4">Received Survey</Dropdown.Item>
                         </Dropdown>
                         <Dropdown
                             eventKey="4"
