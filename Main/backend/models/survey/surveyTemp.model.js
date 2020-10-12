@@ -8,10 +8,6 @@ const surveyTempSchema = new Schema({
     required: true, 
     unique: true
   },
-  description: {
-    type: String,
-    required: true
-  },
   date:{
     type: String,
     required: true
@@ -21,18 +17,11 @@ const surveyTempSchema = new Schema({
     ref: "users",
     required: true
   },
-  pages: [{
-    name: {
-      type: String, 
-      requied : true
-    },
-    elements : [{
-      questionID : {
-        type: Schema.Types.ObjectId, 
-        ref : "questionTemp"
-      }
-    }, ]
-  }],
+  template :{
+    type: String,
+    requried: true
+
+  }
 }, {
   timestamps: true
 });
