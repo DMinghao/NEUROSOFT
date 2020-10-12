@@ -1,3 +1,5 @@
+
+// The whole questionTemp will be deleted soon.
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const questionTempSchema = new Schema({
