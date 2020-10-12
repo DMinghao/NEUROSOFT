@@ -5,6 +5,7 @@ import DocDashSideNav from "./DocDashSideNav.component"
 import UserContext from "../../../context/UserContext";
 import DocPaMGT from './DocPaMGT.component'
 import DocSurveyTemplate from './DocSurveyTemplate.component'
+import TemplateCreator from './TempCreator.component'
 
 export default function DocUserPage() {
     const history = useHistory();
@@ -26,6 +27,8 @@ export default function DocUserPage() {
                 return dashContent();
             case 'DocSurveyTemplate':
                 return <DocSurveyTemplate/>
+            case 'TemplateCreator': 
+                return <TemplateCreator/>
             case 'ReceivedSurvey':
                 return <SurveyList/>
             case 'PatientMGT': 

@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const surveyTempSchema = new Schema({
   //
-  //Do I need surveytempID here?
+  //Do I need surveytempID here? // Template ID no need --MD
   title: {
     type: String,
     required: true, 
     unique: true
-  },
+  }, //Add discription, string not required --MD
   date:{
     type: String,
     required: true

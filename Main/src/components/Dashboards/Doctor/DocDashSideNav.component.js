@@ -29,7 +29,7 @@ export default function DocDashSideNav(props) {
                 updatePage('DocSurveyTemplate');
                 break;
             case "3-2":
-                updatePage('SurveyTemp');
+                updatePage('TemplateCreator');
                 break;
             case "3-3":
                 updatePage('SurveyDist');
