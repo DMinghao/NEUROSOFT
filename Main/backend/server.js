@@ -22,9 +22,11 @@ connection.once('open', () => {
 
 const surveyRouter = require('./routes/API/survey');
 const usersRouter = require('./routes/API/users');
+const templatesRouter = require('./routes/API/templates');
 
 app.use('/API/survey', surveyRouter);
 app.use('/API/users', usersRouter);
+app.use('/API/templates', templatesRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
