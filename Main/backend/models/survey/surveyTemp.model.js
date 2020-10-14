@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const surveyTempSchema = new Schema({
-  //
-  //Do I need surveytempID here? // Template ID no need --MD
   title: {
     type: String,
     required: true, 
     unique: true
-  }, //Add discription, string not required --MD
+  }, 
   date:{
     type: String,
     required: true
@@ -20,7 +18,9 @@ const surveyTempSchema = new Schema({
   template :{
     type: String,
     requried: true
-
+  }, 
+  questionCount : { 
+    type: Number
   }
 }, {
   timestamps: true
