@@ -10,6 +10,10 @@ const surveyTempSchema = new Schema({
     type: String,
     required: true
   },
+  time:{
+    type: String,
+    required: true
+  },
   docID: {
     type: Schema.Types.ObjectId,
     ref: "users",
@@ -19,8 +23,9 @@ const surveyTempSchema = new Schema({
     type: String,
     requried: true
   }, 
-  questionCount : { 
-    type: Number
+  questionCount : {  // maybe 0
+    type: Number,
+    // requried: true
   }
 }, {
   timestamps: true
