@@ -4,7 +4,7 @@ const surveyTempSchema = new Schema({
   title: {
     type: String,
     required: true, 
-    unique: true
+    // unique: true
   }, 
   date:{
     type: String,

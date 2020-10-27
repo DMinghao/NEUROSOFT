@@ -1,4 +1,6 @@
-import React,{ useEffect} from 'react'
+import React,{ useEffect, useContext} from 'react'
+import UserContext from '../../../context/UserContext';
+import axios from 'axios';
 import * as SurveyKo from "survey-knockout";
 import * as SurveyJSCreator from "survey-creator";
 import "survey-creator/survey-creator.css";
@@ -25,7 +27,7 @@ import {template} from '../Patient/testSurveyTemp'
 SurveyJSCreator.StylesManager.applyTheme("bootstrap");
 
 export default function TemplateCreator({TemplateJSON}) {
-
+    const { userData } = useContext(UserContext);
     let surveyCreator
 
     useEffect(() => {
@@ -47,8 +49,27 @@ export default function TemplateCreator({TemplateJSON}) {
         // surveyCreator.JSON = template //current harcoded template 
     }, [])
 
-    const saveMySurvey = () => {
-        console.log(JSON.stringify(surveyCreator.text));
+    const saveMySurvey = async () => {
+        // console.log(surveyCreator.text);
+        const title = JSON.parse(surveyCreator.text)['title']
+        const payload = {
+            title : title ? title : "New Survey Template (Title Undefined)", 
+            docID : userData.user.id,
+            template : JSON.stringify(surveyCreator.text)
+        }
+        await axios.post(
+            '/API/templates/add', 
+            payload,
+            {headers: {
+                'x-auth-token': userData.token
+            }}
+        ).then(res =>{
+            alert("Done!");
+            // console.log(res)
+        }
+        ).catch(error =>{
+            console.log(error)
+        })
     };
 
     return (

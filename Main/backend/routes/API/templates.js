@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require("../../middleware/auth");
 let Temp = require('../../models/survey/surveyTemp.model');
 let User = require('../../models/user.model');
 // let Page = require('../../models/survey/pageTemp.model');
@@ -6,10 +7,14 @@ let User = require('../../models/user.model');
 const mongoose = require('mongoose');
 
 // add a new template
-router.post("/add", async (req, res) => {
+router.post("/add", auth, async (req, res) => {
   try {
     // get elements to validate the add request
     const { title, docID, template } = req.body;  // mising || !questionCount
+
+    // console.log(title)
+    // console.log(docID)
+    // console.log(template)
 
     // check all elelments for a new template
     if (!title || !docID || !template) {
@@ -138,9 +143,20 @@ router.post("/save", async (req, res) => {
 });
 
 // template list docID : list
-router.post("/list", async (req, res) => {
+router.post("/mytemplates", auth, async (req, res) => {
   try {
-
+    const {docID} = req.body; 
+    var list = []
+    await Temp.find({'docID':docID}, (err, docs) =>{
+      list = docs
+    }).then(()=>{
+      list = list.map(x => {
+        const {_doc} = x
+        const {template, createdAt, updatedAt, __v, ...rest} = _doc
+        return rest
+      })
+      return res.status(200).json(list)
+    })
   } catch (error) {
     res
       .status(500)

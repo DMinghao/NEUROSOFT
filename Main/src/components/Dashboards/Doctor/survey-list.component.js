@@ -58,7 +58,7 @@ export default class SurveyList extends Component {
     return (
       <div>
         <br/>
-        <h4>Logged Survey</h4>
+        <h4>Logged Survey Result</h4>
         <table className="table" style = {{tableLayout: "fixed", wordWrap: "break-word"}}>
           <thead className="thead-dark">
             <tr >
