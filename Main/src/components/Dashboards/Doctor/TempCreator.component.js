@@ -20,6 +20,7 @@ import "icheck/skins/square/blue.css";
 import "pretty-checkbox/dist/pretty-checkbox.css";
 
 import * as widgets from "surveyjs-widgets";
+import {template} from '../Patient/testSurveyTemp'
 
 SurveyJSCreator.StylesManager.applyTheme("bootstrap");
 
@@ -43,6 +44,7 @@ export default function TemplateCreator({TemplateJSON}) {
         surveyCreator.showPropertyGrid = "right";
         surveyCreator.rightContainerActiveItem("toolbox");
         if(TemplateJSON) surveyCreator.JSON = JSON.parse(TemplateJSON)
+        // surveyCreator.JSON = template //current harcoded template 
     }, [])
 
     const saveMySurvey = () => {
