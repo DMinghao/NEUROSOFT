@@ -8,10 +8,9 @@ import DocSurveyTemplate from './DocSurveyTemplate.component'
 import TemplateCreator from './TempCreator.component'
 
 export default function DocUserPage() {
-    const history = useHistory();
-    const { userData} = useContext(UserContext);
+    // const history = useHistory();
+    // const { userData} = useContext(UserContext);
     const [currentPage, setCurrentPage] = useState('Dashboard');
-    if (typeof userData.user === "undefined") history.push("/login");
 
     const dashContent = () => {
         return (

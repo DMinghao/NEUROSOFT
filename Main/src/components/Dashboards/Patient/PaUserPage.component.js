@@ -3,21 +3,42 @@ import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import UserContext from "../../../context/UserContext";
+import PaDashSideNav from "./PaDashSideNav.component"
 
 export default function PaUserPage() {
-    const history = useHistory();
-    const { userData, setUserData } = useContext(UserContext);
-    console.log(userData)
-    if (typeof userData.user === "undefined") history.push("/login");
+    // const history = useHistory();
+    // const { userData, setUserData } = useContext(UserContext);
+    // console.log(userData)
+    // if (typeof userData.user === "undefined") history.push("/login");
+
+    const [currentPage, setCurrentPage] = useState('Dashboard');
+
+    const dashContent = () => {
+        return (
+            <div>
+                <h3>Patient's Dashboard Page</h3>
+            </div>
+        )
+    }
+    
+    const renderSwitch = () => {
+        switch (currentPage) {
+            case 'Dashboard':
+                return dashContent();
+            case 'MyDoctors':
+                return <div><h3>My Doctors</h3></div>
+            default:
+                return dashContent();
+        }
+    }
 
     return (
-        <div>
-            <h3>Patient's Dashboard Page</h3>
-            <br/>
-            {/* <Link to={"/newsurvey/" + userData.user.id} style={{ color: "#ffffff", margin: "0.3rem" }}> */}
-            <Link to={"/newsurvey"} style={{ color: "#ffffff", margin: "0.3rem" }}>
+        <div style={{ display: "flex" }}>
+            <PaDashSideNav updatePage={setCurrentPage}/>
+            {renderSwitch()}
+            {/* <Link to={"/newsurvey"} style={{ color: "#ffffff", margin: "0.3rem" }}>
                 <button className="btn btn-outline-primary">Complete a New Survey</button>
-            </Link>
+            </Link> */}
         </div>
 
     )

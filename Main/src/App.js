@@ -14,6 +14,7 @@ import About from "./components/About.component";
 import DocUserPage from "./components/Dashboards/Doctor/DocUserPage.component";
 import PaUserPage from "./components/Dashboards/Patient/PaUserPage.component";
 
+import PrivateRoute from "./components/Auth/PrivateRoute"
 import UserContext from "./context/UserContext";
 // import index from "./components/index";
 
@@ -31,13 +32,11 @@ function App() {
         token = "";
       }
       const tokenRes = await Axios.post(
-        // "http://localhost:5000/users/tokenIsValid",
         "/API/users/tokenIsValid",
         null,
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        // const userRes = await Axios.get("http://localhost:5000/users/", {
           const userRes = await Axios.get("/API/users/", {
           headers: { "x-auth-token": token },
         });
@@ -65,10 +64,10 @@ function App() {
         <Route exact path="/register" component={CreateUser} />
         <Route exact path="/login" component={Login} />
 
-        <Route path="/docdash" component = {DocUserPage} />
-        <Route exact path="/padash" component = {PaUserPage} />
-        <Route exact path="/viewEdit/:id" component={ViewEditSurvey} />
-        <Route exact path="/newSurvey" component={NewSurvey} />
+        <PrivateRoute exact path="/docdash" component = {DocUserPage} />
+        <PrivateRoute exact path="/padash" component = {PaUserPage} />
+        <PrivateRoute exact path="/viewEdit/:id" component={ViewEditSurvey} />
+        <PrivateRoute exact path="/newSurvey" component={NewSurvey} />
       </div>
       
     </Router>
