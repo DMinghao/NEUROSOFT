@@ -97,7 +97,7 @@ NEUROSOFT
         4. Go to the **Main** folder
             ```bash
             cd Main
-            ```
+            ``` 
         5. Start the application 
             ```bash
             npm start
