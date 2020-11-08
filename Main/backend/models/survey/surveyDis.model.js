@@ -10,7 +10,7 @@ const surveyDisSchema = new Schema({
     ref: 'surveyTemp',
   },
   patients:[{
-    paID: {
+    paID: { 
         type: Schema.Types.ObjectId, 
         ref: 'User',
     },
