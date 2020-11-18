@@ -64,6 +64,7 @@ NEUROSOFT
 <center>
     <img alin = "center" src="./Design/sys stack.png">
 </center>
+
 ---
 ## Getting Started
 
