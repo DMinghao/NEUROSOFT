@@ -14,7 +14,7 @@ export default function CreateDistribution() {
   const [loading, setLoading] = useState(false);
   const { userData } = useContext(UserContext);
   const docID = userData.user.id;
-
+ 
   useEffect(() => {
     setLoading(true);
     //get all templates
