@@ -6,6 +6,7 @@ import UserContext from "../../../context/UserContext";
 import DocPaMGT from './DocPaMGT.component'
 import DocSurveyTemplate from './DocSurveyTemplate.component'
 import TemplateCreator from './TempCreator.component'
+import CreateDistribution from './Create-distribution.component'
 
 export default function DocUserPage() {
     // const history = useHistory();
@@ -32,6 +33,8 @@ export default function DocUserPage() {
                 return <SurveyList/>
             case 'PatientMGT': 
                 return <DocPaMGT/>
+            case 'SurveyDist': 
+                return <CreateDistribution/> 
             default:
                 return dashContent();
         }
