@@ -58,6 +58,13 @@ NEUROSOFT
 ├───.gitignore
 └───tree.txt                                    # I am Groot
 ```
+
+---
+## System Architecture 
+<center>
+    <img alin = "center" src="./Design/sys stack.png">
+</center>
+
 ---
 ## Getting Started
 

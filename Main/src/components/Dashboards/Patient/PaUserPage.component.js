@@ -5,6 +5,7 @@ import Axios from "axios";
 import UserContext from "../../../context/UserContext";
 import PaDashSideNav from "./PaDashSideNav.component"
 import CompletedSurvey from './CompletedSurvey.component'
+import PaDocList from "./PaDocList.component";
 
 export default function PaUserPage() {
     // const history = useHistory();
@@ -27,9 +28,8 @@ export default function PaUserPage() {
             case 'Dashboard':
                 return dashContent();
             case 'MyDoctors':
-                return <div><h3>My Doctors</h3></div>
+                return <PaDocList/>
             case 'CompletedSurvey':
-                console.log(currentPage)
                 return <CompletedSurvey/>
             default:
                 return dashContent();
