@@ -4,15 +4,15 @@ import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import userContext from '../../../context/UserContext';
 
-const Survey = props => (
+const Survey = ({survey}) => (
   <tr>
-    <td>{props.survey.paID}</td>
-    <td>{JSON.parse(props.survey.result).name}</td>
-    <td>{Date(JSON.parse(props.survey.result).birthdate)}</td>
-    <td>{JSON.parse(props.survey.result).symptom}</td>
+    <td>{survey.paID}</td>
+    <td>{JSON.parse(survey.result).name}</td>
+    <td>{Date(JSON.parse(survey.result).birthdate)}</td>
+    <td>{JSON.parse(survey.result).symptom}</td>
     <td>
-      <Link to={"/viewEdit/"+props.survey._id}> View </Link>|
-      <a href="#" onClick={() => { props.deleteSurvey(props.survey._id) }}> Delete </a>
+      <Link to={"/viewEdit/"+survey._id}> View </Link>|
+      <a href="#" onClick={() => { props.deleteSurvey(survey._id) }}> Delete </a>
     </td>
   </tr>
 )
