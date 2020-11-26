@@ -14,7 +14,7 @@ export default function NewSurvey() {
   Survey
     .StylesManager
     .applyTheme("default");
-
+    
   const json = template
   return (
     <Survey.Survey model={new Survey.Model(json)} onComplete={(result) => {
