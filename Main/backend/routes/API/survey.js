@@ -12,9 +12,10 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const result = JSON.stringify(req.body.result);
   const userId = req.body.user;
-  console.log(req.body.user)
-  const newSurvey = new Survey({ paID: userId, result: result });
-  console.log(newSurvey)
+  //TODO get temp id 
+  // console.log(req.body.user)
+  const newSurvey = new Survey({ paID: userId, result: result }); //TODO add temp id 
+  // console.log(newSurvey)
 
   newSurvey.save()
     .then(() => res.json('Survey added!'))
