@@ -285,4 +285,19 @@ router.get("/AllPa", auth, async (req, res) => {
     })
 })
 
+// get a list of a patient's all doctors
+router.get("/AllDoc", auth, async (req, res) => {
+  const all = await User.find(
+    { userType: "doctor" },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        const docs = result.map(({ _doc }) => _doc)
+        const out = docs.map(({ password, createdAt, updatedAt, __v, ...rest }) => rest)
+        res.json(out);
+      }
+    })
+})
+
 module.exports = router;

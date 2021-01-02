@@ -61,7 +61,7 @@ export default function DocSurveyTemplate() {
                 Existing Survey Template
             </h4>
             <table className = "table table-striped">
-            <thead>
+                <thead>
                     <tr>
                         <th scope="col">SurveyID</th>
                         <th scope="col">Title</th>

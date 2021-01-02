@@ -96,6 +96,7 @@ router.post("/edit", async (req, res) => {
 
 });
 
+//TODO await for testing 
 // save a changed template
 router.post("/save", async (req, res) => {
   try {
@@ -147,7 +148,7 @@ router.post("/mytemplates", auth, async (req, res) => {
   try {
     const {docID} = req.body; 
     var list = []
-    await Temp.find({'docID':docID}, (err, docs) =>{
+    Temp.find({'docID':docID}, (err, docs) =>{
       list = docs
     }).then(()=>{
       list = list.map(x => {
