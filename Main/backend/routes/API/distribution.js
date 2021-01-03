@@ -15,7 +15,7 @@ router.post("/add", auth, (req, res) => {
         patients: patients,
         dueDate : dueDate? dueDate : undefined
       })
-
+      //TODO for each patients add dist id to thier account 
   newDis
     .save()
     .then((createdDis) =>
