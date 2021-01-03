@@ -31,6 +31,8 @@ export default function PaUserPage() {
                 return <PaDocList/>
             case 'CompletedSurvey':
                 return <CompletedSurvey/>
+            case 'PendingSurvey': 
+                return <h1>hey</h1>
             default:
                 return dashContent();
         }
