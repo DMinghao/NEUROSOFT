@@ -85,15 +85,13 @@ export default function CreateDistribution() {
       const payload = {
         docID: docID,
         tempID: tempID[0].value,
-        patients: patients.map((x) => x.value),
+        patients: patients.map((x) => {return { paID : x.value}}),
         ...(hasDueDate && {
           dueDate: dueDate.toLocaleDateString("en-US"),
         }),
       };
       axios.post("/API/distribution/add",
-      {
-        payload
-      },
+      payload,
       {
         headers: {
           "x-auth-token": userData.token,
@@ -101,6 +99,7 @@ export default function CreateDistribution() {
       }
       ).then((res) => {
         if(res.status != 200) console.log(res)
+        else alert("Success!")
       })
       .catch((error) => {
         console.log(error);
