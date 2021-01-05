@@ -1,87 +1,87 @@
-import React, { useState, useContext} from "react";
-import {link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../../context/UserContext";
 import SelectSearch from "react-select-search";
-import loading from "../../loading.component"
+import Loading from "../../Loading.component"
 import axios from "axios";
+import CreateDistribution from './Create-distribution.component'
 
 export default function AllDistribution() {
-    const [tempID, setTempID] = userState("");
-    const [patients, setPatients] = useState([]);
-    const [allTemp, setAllTemp] = useState([]);
-    const [allRelated, setAllRelated] = useState([]);
+    const [allDis, setAllDis] = useState([])
     const [loading, setloading] = useState(false);
-    const {userData} = useContext(UserContext);
+    const { userData } = useContext(UserContext);
     const docID = userData.user.id;
+
+    const DistInfo = ({Dist}) => {
+        return (
+            <tr>
+                    <td>{Dist._id}</td>
+                    <th scope = "row">{Dist.docID}</th>
+                    <td>{Dist.patients.length}</td>
+                    <td>{(Dist.patients.filter(x => x.completed == true) / Dist.patients.length).toFixed(2)}</td>
+                    <td>
+                        <button className = {"btn btn-primary a-btn-slide-text"}
+                        // onClick= "./TempCreator.component"
+                        >
+                            View
+                        </button>
+                        <button className = {"btn btn-primary a-btn-slide-text"}
+                        // onClick= "./TempCreator.component"
+                        >
+                            Edit
+                        </button>
+                    </td>
+                
+            </tr>
+        )
+    }
 
     useEffect(() => {
         setloading(true);
         axios
-          .past( 
-              "/API/templates/mytemplates",
-              {
-                  docID: userData.user.id,
-              },
-              {
-                  headers : {
-                      "x-auth-token": userData.token,
-                  }
-              }
-          )
-          .then((res)=> {
-              setAllTemp(res.data);
+            .post(
+                "/API/distribution/mydistribution",
+                {
+                    docID: docID,
+                },
+                {
+                    headers: {
+                        "x-auth-token": userData.token,
+                    }
+                }
+            )
+            .then((res) => {
+                console.log(res)
+                setAllDis(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        setloading(false);
+    }, [])
 
-          })
-          .catch((error) => {
-              console.log(error);
-
-          });
-
-        axios
-          .get("/API/USERS/allRelated/", {
-              headers : {
-                  "x-auth-token": userData.token,
-            
-              },
-          })
-          .then((res)  => {
-            const relatedIDs = res.data.relatedUsers;
-            axios
-              .get("/API/USERS/AllPa/",{
-                  headers : {
-                      "x-auth-token": userData.token,
-                  },
-              })
-              .then((res) => {
-                const AllPa = res.data;
-                setAllRelated(
-                    AllPa.filter(x) => {
-                        if (relatedIDs.incluses(x. id)) return x;
-                    })
-              })
-
-            
-          
-     return (
+    console.log(allDis)
+    return (
         <div style={{ width: "100%" }}>
-            <h4>
-                Existing Survey Template
-            </h4>
-            <table className = "table table-striped">
-            <thead>
-                    <tr>
-                        <th scope="col">DoctorID</th>
-                        <th scope="col">SurveyID</th>
-                        <th scope="col">PatientID</th>
-                        <th scope="col">Complated Rate</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                {CreatedTemp.map(x => <TempInfo Template={x} key={x._id} />)} 
-                </tbody>
-
-            </table>
-    </div>
-    )
+            <Link to = '/newDist'><button className='btn btn-primary'>New Distribution</button></Link>
+            { loading ? <Loading/> : (
+                <div>
+                    <h4>Existing Survey Distribution</h4>
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Doctor ID</th>
+                                <th scope="col">Template ID</th>
+                                <th scope="col">Patient Count</th>
+                                <th scope="col">Complated Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {allDis.map(x => <DistInfo Dist={x} key={x._id} />)}
+                        </tbody>
+                    </table>
+                </div>)}
+        </div>
+            );
 }   

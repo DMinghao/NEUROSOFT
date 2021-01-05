@@ -41,10 +41,10 @@ router.post("/add", auth, async (req, res) => {
 //your code here
 router.post("/mydistribution", auth, (req, res) => {
     try {
-      const {docID} = req.body; 
-      console.log(docID)
+      const {docID} = req.body;
+      console.log(req.body)
       var list = []
-      SurveyDis.find({'docID':docID}, (err, docs) =>{
+      surveyDis.find({'docID':docID}, (err, docs) =>{
         list = docs
         console.log(docs)
       }).then(()=>{
@@ -56,9 +56,10 @@ router.post("/mydistribution", auth, (req, res) => {
         return res.status(200).json(list)
       })
     } catch (error) {
+      console.log(error)
       res
         .status(500)
-        .json({ error: err.message });
+        .json({ error: error.message });
     }
   
   });

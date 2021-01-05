@@ -16,6 +16,7 @@ import PaUserPage from "./components/Dashboards/Patient/PaUserPage.component";
 
 import PrivateRoute from "./components/Auth/PrivateRoute"
 import UserContext from "./context/UserContext";
+import CreateDistribution from './components/Dashboards/Doctor/Create-distribution.component';
 // import index from "./components/index";
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
         <PrivateRoute exact path="/docdash" component = {DocUserPage} />
         <PrivateRoute exact path="/padash" component = {PaUserPage} />
         <PrivateRoute exact path="/viewEdit/:id" component={ViewEditSurvey} />
+        <PrivateRoute exact path="/newDist" component={CreateDistribution} />
         <PrivateRoute exact path="/newSurvey" component={NewSurvey} />
       </div>
       
