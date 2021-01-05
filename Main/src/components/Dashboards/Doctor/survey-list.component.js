@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import userContext from '../../../context/UserContext';
 
-const Survey = props => (
+const Survey = (props) => (
   <tr>
     <td>{props.survey.paID}</td>
     <td>{JSON.parse(props.survey.result).name}</td>

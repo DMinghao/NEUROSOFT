@@ -58,6 +58,13 @@ NEUROSOFT
 ├───.gitignore
 └───tree.txt                                    # I am Groot
 ```
+
+---
+## System Architecture 
+<center>
+    <img alin = "center" src="./Design/sys stack.png">
+</center>
+
 ---
 ## Getting Started
 
@@ -97,7 +104,7 @@ NEUROSOFT
         4. Go to the **Main** folder
             ```bash
             cd Main
-            ```
+            ``` 
         5. Start the application 
             ```bash
             npm start

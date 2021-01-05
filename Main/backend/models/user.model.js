@@ -30,7 +30,12 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId, 
       ref: 'User',
       unique: true
-    }]
+    }],
+  relatedDist:[{
+      type: Schema.Types.ObjectId, 
+      ref: 'surveyDis',
+      unique: true
+  }]
 }, {
   timestamps: true,
 });
