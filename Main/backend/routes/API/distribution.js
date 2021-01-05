@@ -38,4 +38,31 @@ router.post("/add", auth, async (req, res) => {
   }
 });
 
+//your code here
+router.post("/mydistribution", auth, (req, res) => {
+    try {
+      const {docID} = req.body;
+      console.log(req.body)
+      var list = []
+      surveyDis.find({'docID':docID}, (err, docs) =>{
+        list = docs
+        console.log(docs)
+      }).then(()=>{
+        list = list.map(x => {
+          const {_doc} = x
+          const {template, createdAt, updatedAt, __v, ...rest} = _doc
+          return rest
+        })
+        return res.status(200).json(list)
+      })
+    } catch (error) {
+      console.log(error)
+      res
+        .status(500)
+        .json({ error: error.message });
+    }
+  
+  });
+
+
 module.exports = router;

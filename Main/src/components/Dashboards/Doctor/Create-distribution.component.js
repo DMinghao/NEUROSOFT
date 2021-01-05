@@ -19,6 +19,7 @@ export default function CreateDistribution() {
   const { userData } = useContext(UserContext);
   const docID = userData.user.id;
   const ref = React.createRef();
+  const history = useHistory()
 
   useEffect(() => {
     setLoading(true);
@@ -99,7 +100,7 @@ export default function CreateDistribution() {
       }
       ).then((res) => {
         if(res.status != 200) console.log(res)
-        else alert("Success!")
+        else history.goBack()
       })
       .catch((error) => {
         console.log(error);
@@ -108,6 +109,7 @@ export default function CreateDistribution() {
     } else {
       alert("missing feild(s)");
     }
+
   };
 
   return (

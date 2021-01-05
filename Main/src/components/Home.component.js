@@ -11,7 +11,7 @@ return(
 <div>
     <h3>Home Page
     <p>
-        <img src={url.default} alt="Doctor smiling" width="1116" height="500"/>
+        <img src={url.default} alt="Doctor smiling" width="100%" height="100%"/>
     </p>
     </h3>
 </div>
