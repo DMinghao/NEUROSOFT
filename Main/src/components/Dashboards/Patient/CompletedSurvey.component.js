@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react'
 import UserContext from '../../../context/UserContext'
 import axios from 'axios'
+import viewSurvey from './viewSurvey.component'
+import { Link } from 'react-router-dom';
+
 
 export default function CompletedSurvey() {
     const {userData} = useContext(UserContext) 
@@ -28,16 +31,14 @@ export default function CompletedSurvey() {
       }]
 
     const SurveyInfo = ({Survey}) => {
+        console.log(Survey)
         return (
             <tr>
                     <th scope = "row">{Survey.title}</th>
                     <td>{Survey.date}</td>
                     <td>{0}</td>
                     <td>
-                        <button className = {"btn btn-primary a-btn-slide-text"}
-                        >
-                            View
-                        </button>
+                        <Link to={"/viewEdit/"+ Survey._id}> View </Link>
                     </td>
             </tr>
         )
