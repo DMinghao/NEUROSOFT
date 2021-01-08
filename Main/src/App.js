@@ -16,6 +16,7 @@ import PaUserPage from "./components/Dashboards/Patient/PaUserPage.component";
 
 import PrivateRoute from "./components/Auth/PrivateRoute"
 import UserContext from "./context/UserContext";
+import viewSurvey from "./components/Dashboards/Patient/viewSurvey.component";
 // import index from "./components/index";
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
         <PrivateRoute exact path="/padash" component = {PaUserPage} />
         <PrivateRoute exact path="/viewEdit/:id" component={ViewEditSurvey} />
         <PrivateRoute exact path="/newSurvey" component={NewSurvey} />
+        <PrivateRoute exact path="/viewSurvey/:id" component={viewSurvey} />
       </div>
       
     </Router>

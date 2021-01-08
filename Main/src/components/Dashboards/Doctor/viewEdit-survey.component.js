@@ -31,12 +31,12 @@ export default class ViewEditSurvey extends Component {
                     if (key !== "id" && key !== "name" && key !== "birthdate" && key !== "symptom") result[key] = r[key];
                 });
                 this.setState({
-                    ID: response.data._id,
-                    Name: r.name,
-                    DOB: Date(r.birthdate),
-                    Symptoms: r.symptom,
-                    Other: result
-                })
+                        ID: response.data._id,
+                        Name: r.name,
+                        DOB: Date(r.birthdate),
+                        Symptoms: r.symptom,
+                        Other: result
+                    })
             })
             .catch(function (error) {
                 console.log(error);
