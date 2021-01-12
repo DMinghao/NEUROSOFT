@@ -32,7 +32,7 @@ export default function DocSurveyTemplate() {
     }
 
     const updateCreatedTemp = async() => {
-        await axios.post('/API/templates/mytemplates', 
+        const res = await axios.post('/API/templates/mytemplates', 
         {
             docID:userData.user.id
         },
@@ -40,13 +40,8 @@ export default function DocSurveyTemplate() {
             headers: {
                 'x-auth-token': userData.token
             }
-        }).then (
-            res => {
-                setCreatedTemp(res.data)
-            }
-        ).catch((error) => {
-            console.log(error)
         })
+        setCreatedTemp(res.data)
     }
 
     useEffect(() => {

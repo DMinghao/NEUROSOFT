@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import UserContext from '../../../context/UserContext'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 
 const SurveyInfoCard = ({completedSurvey}) => {
@@ -27,11 +27,11 @@ export default function ViewSurvey() {
 
     const {userData} = useContext(UserContext) 
     const [completedSurveyInfo, setCompletedSurvey] = useState([])
-
+    const history = useHistory();
     
     
     const updateCompletedSurvey = async() => {
-        await axios.get('/API/survey/view',
+        const res = await axios.get('/API/survey/view',
         {
             PaID: userData.user.id
         },
@@ -39,24 +39,8 @@ export default function ViewSurvey() {
             headers: {
                 'x-auth-token': userData.token
             }
-        }).then(res => {
-            setCompletedSurvey(JSON.parse(res.data))
-            // const r = setCompletedSurvey(JSON.parse(res.data.result))
-            // var result = {}
-            // Object.keys(r).forEach(key => {
-            //     if (key !== "id" && key !== "name" && key !== "birthdate" && key !== "symptom") result[key] = r[key];
-            // });
-            // this.setState({
-            //         ID: response.data._id,
-            //         Name: r.name,
-            //         DOB: Date(r.birthdate),
-            //         Symptoms: r.symptom,
-            //         Other: result
-            //     })
-
-        }).catch((error) => {
-            console.log(error);
         })
+        setCompletedSurvey(JSON.parse(res.data))
     }
 
     useEffect(() => {updateCompletedSurvey()},[])
@@ -71,7 +55,7 @@ export default function ViewSurvey() {
                 'k': key,
                 'o': obj[key]
             };
-            return <Item item={i} />;
+            return <Item item={i} key ={i.k}/>;
         });
     }
 
@@ -79,6 +63,9 @@ export default function ViewSurvey() {
         <div>
             <h3>View Completed survey</h3>
             <br />
+            <button style={{margin: "0 0 0 1rem"}} className="btn btn-secondary" onClick={()=>history.goBack()}>
+            Go Back
+          </button>
             <div>
                 <h4>Patient Info </h4>
                 <table className="table">

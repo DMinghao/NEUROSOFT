@@ -28,21 +28,27 @@ export default function DocPaMGT() {
     const [NotLinkedPa, setNotLinkedPa] = useState([])
 
     const updateRelatedData = async () => {
-        const res = await axios.get('/API/users/allRelated/', {
+        await axios.get('/API/users/allRelated/', {
             headers: {
                 'x-auth-token': userData.token
             }
+        }).then(res => {
+            setRelatedID(res.data.relatedUsers)
+        }).catch((error) => {
+            console.log(error);
         })
-        setRelatedID(res.data.relatedUsers)
     }
 
     const updateAllPaData = async () => {
-        const res = await axios.get('/API/users/AllPa/', {
+        await axios.get('/API/users/AllPa/', {
             headers: {
                 'x-auth-token': userData.token
             }
+        }).then(res => {
+            setAllPa(res.data)
+        }).catch((error) => {
+            console.log(error);
         })
-        setAllPa(res.data)
     }
 
     useEffect(() => {
@@ -73,6 +79,10 @@ export default function DocPaMGT() {
                     headers: {
                         'x-auth-token': userData.token
                     }
+                }).then(res => {
+                    // console.log(res)
+                }).catch((e) => {
+                    console.log(e);
                 })
         } else {
             const payload = {
@@ -85,6 +95,10 @@ export default function DocPaMGT() {
                     headers: {
                         'x-auth-token': userData.token
                     }
+                }).then(res => {
+                    // console.log(res)
+                }).catch((e) => {
+                    console.log(e);
                 })
         }
         updateRelatedData()

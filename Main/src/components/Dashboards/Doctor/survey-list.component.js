@@ -26,22 +26,15 @@ export default class SurveyList extends Component {
     this.state = {surveys: []};
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // axios.get('http://localhost:5000/API/survey/')
-    axios.get('/API/survey/')
-      .then(response => {
-        this.setState({ surveys: response.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    const response = await axios.get('/API/survey/')
+    this.setState({ surveys: response.data })
   }
 
-  deleteSurvey(id) {
+  async deleteSurvey(id) {
     // axios.delete('http://localhost:5000/API/survey/'+id)
-    axios.delete('/API/survey/'+id)
-      .then(response => { console.log(response.data)})
-      .catch(error => console.log(error));
+    await axios.delete('/API/survey/'+id)
 
     this.setState({
       surveys: this.state.surveys.filter(el => el._id !== id)

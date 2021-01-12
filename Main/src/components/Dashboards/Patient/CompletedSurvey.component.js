@@ -31,7 +31,6 @@ export default function CompletedSurvey() {
       }]
 
     const SurveyInfo = ({Survey}) => {
-        console.log(Survey)
         return (
             <tr>
                     <th scope = "row">{Survey.title}</th>
@@ -47,7 +46,7 @@ export default function CompletedSurvey() {
     const updatepaSurvey = async() => {
 
        
-        axios.post('/API/survey/mysurveys', 
+        const res = await axios.post('/API/survey/mysurveys', 
         {
             PaID: userData.user.id
         },
@@ -55,14 +54,10 @@ export default function CompletedSurvey() {
             headers: {
                 'x-auth-token': userData.token
             }
-        }).then (
-            res => {
-                console.log(res.data)
-                setpaSurvey(res.data)
-            }
-        ).catch((error) => {
+        }).catch((error) => {
             console.log(error)
         })
+        setpaSurvey(res.data)
     }
 
     useEffect(() => {

@@ -14,7 +14,9 @@ import About from "./components/About.component";
 import DocUserPage from "./components/Dashboards/Doctor/DocUserPage.component";
 import PaUserPage from "./components/Dashboards/Patient/PaUserPage.component";
 
-import PrivateRoute from "./components/Auth/PrivateRoute"
+import PrivateRoute from "./components/Auth/PrivateRoute.route"
+import DocPrivateRoute from "./components/Auth/DocPrivateRoute.route"
+import PaPrivateRoute from "./components/Auth/PaPrivateRoute.route"
 import UserContext from "./context/UserContext";
 import viewSurvey from "./components/Dashboards/Patient/viewSurvey.component";
 import CreateDistribution from './components/Dashboards/Doctor/Create-distribution.component';
@@ -66,11 +68,11 @@ function App() {
         <Route exact path="/register" component={CreateUser} />
         <Route exact path="/login" component={Login} />
 
-        <PrivateRoute exact path="/docdash" component = {DocUserPage} />
-        <PrivateRoute exact path="/padash" component = {PaUserPage} />
+        <DocPrivateRoute exact path="/docdash" component = {DocUserPage} />
+        <PaPrivateRoute exact path="/padash" component = {PaUserPage} />
         <PrivateRoute exact path="/viewEdit/:id" component={ViewEditSurvey} />
-        <PrivateRoute exact path="/newDist" component={CreateDistribution} />
-        <PrivateRoute exact path="/newSurvey" component={NewSurvey} />
+        <DocPrivateRoute exact path="/newDist" component={CreateDistribution} />
+        <PrivateRoute exact path="/newSurvey/:id" component={NewSurvey} />
         <PrivateRoute exact path="/viewSurvey/:id" component={viewSurvey} />
       </div>
       
