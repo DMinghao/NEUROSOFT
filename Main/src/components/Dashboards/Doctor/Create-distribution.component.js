@@ -19,13 +19,13 @@ export default function CreateDistribution() {
   const { userData } = useContext(UserContext);
   const docID = userData.user.id;
   const ref = React.createRef();
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     setLoading(true);
-    //get all templates
-    axios
-      .post(
+    const loadData = async () => {
+      //get all templates
+      var res = await axios.post(
         "/API/templates/mytemplates",
         {
           docID: docID,
@@ -35,50 +35,46 @@ export default function CreateDistribution() {
             "x-auth-token": userData.token,
           },
         }
-      )
-      .then((res) => {
-        setAllTemp(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    //get all related user
-    axios
-      .get("/API/users/allRelated/", {
+      );
+      // .catch((error) => {
+      //   console.log(error);
+      // });
+      setAllTemp(res.data);
+      //get all related user
+      var res2 = await axios
+        .get("/API/users/allRelated/", {
+          headers: {
+            "x-auth-token": userData.token,
+          },
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      const relatedIDs = res2.data.relatedUsers;
+      var res3 = await axios.get("/API/users/AllPa/", {
         headers: {
           "x-auth-token": userData.token,
         },
-      })
-      .then((res) => {
-        const relatedIDs = res.data.relatedUsers;
-        axios
-          .get("/API/users/AllPa/", {
-            headers: {
-              "x-auth-token": userData.token,
-            },
-          })
-          .then((res) => {
-            const AllPa = res.data;
-            setAllRelated(
-              AllPa.filter((x) => {
-                if (relatedIDs.includes(x._id)) return x;
-              })
-            );
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
       });
+      // .catch((error) => {
+      //   console.log(error);
+      // });
+      const AllPa = res3.data;
+      setAllRelated(
+        AllPa.filter((x) => {
+          if (relatedIDs.includes(x._id)) return x;
+        })
+      );
+    };
+    loadData();
+
     setLoading(false);
   }, []);
 
   // console.log(allRelated)
   // console.log(allTemp)
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     if (tempID.length > 0 && patients.length > 0) {
       // console.log(tempID)
@@ -86,30 +82,27 @@ export default function CreateDistribution() {
       const payload = {
         docID: docID,
         tempID: tempID[0].value,
-        patients: patients.map((x) => {return { paID : x.value}}),
+        patients: patients.map((x) => {
+          return { paID: x.value };
+        }),
         ...(hasDueDate && {
           dueDate: dueDate.toLocaleDateString("en-US"),
         }),
       };
-      axios.post("/API/distribution/add",
-      payload,
-      {
+      var res4 = await axios.post("/API/distribution/add", payload, {
         headers: {
           "x-auth-token": userData.token,
         },
-      }
-      ).then((res) => {
-        if(res.status != 200) console.log(res)
-        else history.goBack()
-      })
-      .catch((error) => {
-        console.log(error);
       });
+      // .catch((error) => {
+      //   console.log(error);
+      // });
+      if (res4.status != 200) console.log(res4);
+      else history.goBack();
       // TODO redirect back to previous page
     } else {
       alert("missing feild(s)");
     }
-
   };
 
   return (
@@ -151,8 +144,9 @@ export default function CreateDistribution() {
                 flip={true}
                 style={{ width: "100%" }}
               />
-              <style>{
-                "\
+              <style>
+                {
+                  "\
                 .rbt-token{\
                   cursor: pointer;\
                   padding-right: 21px;\
@@ -180,7 +174,8 @@ export default function CreateDistribution() {
                   overflow: hidden;\
                 }\
                 "
-              }</style>
+                }
+              </style>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -245,8 +240,11 @@ export default function CreateDistribution() {
             )}
           </div>
           <br />
-          <button className="btn btn-primary" onClick={submit}>
+          <button style={{margin: "0 1rem 0 0"}} className="btn btn-primary" onClick={submit}>
             Submit
+          </button>
+          <button style={{margin: "0 0 0 1rem"}} className="btn btn-secondary" onClick={()=>history.goBack()}>
+            Cancel
           </button>
         </form>
       )}

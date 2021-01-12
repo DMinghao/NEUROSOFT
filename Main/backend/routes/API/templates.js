@@ -66,7 +66,7 @@ router.post("/add", auth, async (req, res) => {
 });
  
 // view template
-router.post("/view", async (req, res) => {
+router.post("/view", auth, async (req, res) => {
   try {
     // get elements to validate the view request
     const temp = await Temp.findById(req.template);

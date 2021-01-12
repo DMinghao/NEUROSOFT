@@ -1,61 +1,78 @@
-const router = require('express').Router();
-let Survey = require('../../models/survey/survey.model');
-let User = require('../../models/user.model');
+const router = require("express").Router();
+let Survey = require("../../models/survey/survey.model");
+let User = require("../../models/user.model");
 const auth = require("../../middleware/auth");
+const SurveyDis = require("../../models/survey/surveyDis.model");
 
-router.route('/').get((req, res) => {
+router.route("/").get((req, res) => {
   Survey.find()
-    .then(surveys => res.json(surveys))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .then((surveys) => res.json(surveys))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route('/add').post((req, res) => {
+router.route("/add").post((req, res) => {
   const result = JSON.stringify(req.body.result);
   const userId = req.body.user;
-  //TODO get temp id 
+  const distId = req.body.distID;
   // console.log(req.body.user)
-  const newSurvey = new Survey({ paID: userId, result: result }); //TODO add temp id 
+  const newSurvey = new Survey({
+    paID: userId,
+    result: result,
+    surveyDisID: distId,
+  });
   // console.log(newSurvey)
-
-  newSurvey.save()
-    .then(() => res.json('Survey added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+  const changeComplete = async () => {
+    const dist = await SurveyDis.findById(distId);
+    var palist = dist.patients;
+    for (i = 0; i < palist.length; i++) {
+      if (palist[i].paID == userId) {
+        palist[i].completed = true;
+        break;
+      }
+    }
+    await SurveyDis.findByIdAndUpdate(
+      distId,
+      { patients: palist },
+      { runValidators: true },
+      (err, doc) => {
+        if (err) console.log(err);
+      }
+    );
+  };
+  changeComplete();
+  newSurvey
+    .save()
+    .then(() => res.json("Survey added!"))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route('/:id').get((req, res) => {
+router.route("/:id").get((req, res) => {
   Survey.findById(req.params.id)
-    .then(survey => res.json(survey))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .then((survey) => res.json(survey))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route('/:id').delete((req, res) => {
+router.route("/:id").delete((req, res) => {
   Survey.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Survey deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .then(() => res.json("Survey deleted."))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route('/update/:id').post((req, res) => {
+router.route("/update/:id").post((req, res) => {
   Survey.findById(req.params.id)
-    .then(survey => {
+    .then((survey) => {
       // exercise.username = req.body.username;
       // exercise.description = req.body.description;
       // exercise.duration = Number(req.body.duration);
       // exercise.date = Date.parse(req.body.date);
 
-      survey.save()
-        .then(() => res.json('Survey updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
+      survey
+        .save()
+        .then(() => res.json("Survey updated!"))
+        .catch((err) => res.status(400).json("Error: " + err));
     })
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
-
-// check if user is patient
-
-
-// get date and time
-const dateInfo = new Date();
-const date = dateInfo.toString().substring(4, 15);
-const time = dateInfo.toString().substring(15, 25);
 
 // view survey
 router.post("/view", async (req, res) => {
@@ -64,46 +81,37 @@ router.post("/view", async (req, res) => {
     const survey = await Survey.findById(req.survey);
 
     res.json(survey);
-
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
-
 });
 
 // Completed Survey list
 router.post("/mysurveys", auth, async (req, res) => {
   try {
     const { PaID } = req.body;
-    console.log(PaID)
+    // console.log(PaID)
     const Pa = await User.findById(PaID);
     if (Pa.userType !== "patient") {
-      return res
-        .status(400)
-        .json({ msg: "This user is not a patient." });
+      return res.status(400).json({ msg: "This user is not a patient." });
     }
-    var list = []
-    Survey.find({ 'paID': PaID }, (err, docs) => {
-      list = docs
+    var list = [];
+    Survey.find({ paID: PaID }, (err, docs) => {
+      list = docs;
       // console.log(list)
     }).then(() => {
-      list = list.map(x => {
-        const {_doc} = x
-        const { result, ...rest } = _doc
+      list = list.map((x) => {
+        const { _doc } = x;
+        const { result, ...rest } = _doc;
         // console.log(rest)
-        return rest
-      })
+        return rest;
+      });
       // console.log(list)
-      return res.status(200).json(list)
-    })
+      return res.status(200).json(list);
+    });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
-
 });
 
 module.exports = router;
