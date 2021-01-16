@@ -77,7 +77,7 @@ export default function AllDistribution() {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Doctor ID</th>
+                <th scope="col">Distribution ID</th>
                 <th scope="col">Template ID</th>
                 <th scope="col">Patient Count</th>
                 <th scope="col">Complated Rate</th>

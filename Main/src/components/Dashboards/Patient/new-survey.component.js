@@ -24,17 +24,19 @@ export default function NewSurvey(props) {
   const location = useLocation();
   const { userData, setUserData } = useContext(UserContext);
   const [template, setTemplate] = useState({});
+  const [temp, setTemp] = useState({});
   // if (!userData.user) history.push("/login");
-  const tempID = location.state.tempid;
-  const distID = location.state.distid;
+  const {tempID, distID} = props.location.state
   Survey.StylesManager.applyTheme("default");
+
+  // console.log(tempID)
 
   //TODO axios get temp by id (make sure backend api is working)
   //TODO extract template from return data
   useEffect(() => {
     const getTempData = async () => {
       const res = await axios.post(
-        "/API/users/unlinkuser",
+        "/API/templates/view",
         { template: tempID },
         {
           headers: {
@@ -43,6 +45,7 @@ export default function NewSurvey(props) {
         }
       );
       setTemplate(res.data);
+      setTemp(JSON.parse(res.data.template))
     }
     getTempData()
   }, []);
@@ -66,7 +69,7 @@ export default function NewSurvey(props) {
 
   return (
     <Survey.Survey
-      model={new Survey.Model(template.template)}
+      model={new Survey.Model(temp)}
       onComplete={onComplete}
     />
   );

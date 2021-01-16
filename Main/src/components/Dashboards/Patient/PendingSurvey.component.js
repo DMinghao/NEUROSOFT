@@ -16,7 +16,14 @@ export default function PendingSurvey() {
                     <td>{Survey.tempID}</td>
                     <td>{Survey.dueDate}</td>
                     <td>
-                        <Link> Start Survey </Link>
+                        <Link
+                        to={{
+                            pathname:"/newSurvey/"+ Survey.distID, 
+                            state:{
+                                tempID: Survey.tempID,
+                                distID: Survey.distID
+                            }
+                        }}> Start Survey </Link>
                     </td>
             </tr>
         )
