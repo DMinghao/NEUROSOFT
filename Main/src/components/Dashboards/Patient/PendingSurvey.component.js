@@ -27,7 +27,7 @@ export default function PendingSurvey() {
        
         const res = await axios.post('/API/distribution/pendingsurvey', 
         {
-            PaID: userData.user.id
+            paID: userData.user.id
         },
         { 
             headers: {

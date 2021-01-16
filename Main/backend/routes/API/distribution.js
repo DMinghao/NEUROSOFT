@@ -73,8 +73,10 @@ router.post("/pendingsurvey", auth, async (req, res) => {
     //var patienttojson = JSON.parse(patient)
     //console.log(patienttojson)
     //const { _doc } = patienttojson
-    try {var list = patient.relatedDist}
-    catch {res.status(201).json({message: "This patient has no distribution in Hartford Healthcare"})}
+    var list = []
+    // list = patient.relatedDist
+    try {list = patient.relatedDist}
+    catch(e) {res.status(201).json({message: "This patient has no distribution in Hartford Healthcare"})}
     
     var temlist = []
     //console.log(list)
