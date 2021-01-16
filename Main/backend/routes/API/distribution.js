@@ -69,7 +69,13 @@ router.post("/pendingsurvey", auth, async (req, res) => {
   try {
     const { paID } = req.body;
     const patient = await User.findById(paID);
-    var list = patient.relatedDist
+    //console.log(patient)
+    //var patienttojson = JSON.parse(patient)
+    //console.log(patienttojson)
+    //const { _doc } = patienttojson
+    try {var list = patient.relatedDist}
+    catch {res.status(201).json({message: "This patient has no distribution in Hartford Healthcare"})}
+    
     var temlist = []
     //console.log(list)
     for (i = 0; i < list.length; i++){
@@ -78,7 +84,8 @@ router.post("/pendingsurvey", auth, async (req, res) => {
       const palist = dist.patients
       palist.forEach(pa => {
         if (pa.paID == paID && pa.completed == false) {
-          var item = {distID: dist._id, tempID: dist.tempID}
+          var dueDate = dist.hasOwnProperty('dueDate') ? dist.dueDate: ""
+          var item = {distID: dist._id, tempID: dist.tempID, dueDate: dueDate}
           temlist.push(item)
           //console.log(dist.tempID)
         }
