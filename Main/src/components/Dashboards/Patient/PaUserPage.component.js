@@ -6,6 +6,7 @@ import UserContext from "../../../context/UserContext";
 import PaDashSideNav from "./PaDashSideNav.component"
 import CompletedSurvey from './CompletedSurvey.component'
 import PaDocList from "./PaDocList.component";
+import PendingSurvey from "./PendingSurvey.component"
 
 export default function PaUserPage() {
     // const history = useHistory();
@@ -32,7 +33,7 @@ export default function PaUserPage() {
             case 'CompletedSurvey':
                 return <CompletedSurvey/>
             case 'PendingSurvey': 
-                return <h1>hey</h1>
+                return <PendingSurvey/>
             default:
                 return dashContent();
         }
