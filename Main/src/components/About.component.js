@@ -28,19 +28,22 @@ return(
     </h5>
     <br></br>
     <p>
-    Minghao Du <i>mdu5@jh.edu</i>
+    Minghao Du <i>mdu5@jhu.edu</i>
     </p>
     <p>
     Tao Ren <i>tren199729@gmail.com</i>
     </p>
     <p>
-    Ying Chen <i>ychen448@jh.edu</i>
+    Ying Chen <i>ychen448@jhu.edu</i>
     </p>
     <p>
-    Yuxin Liu <i>yliu387@jh.edu </i>
+    Yuxin Liu <i>yliu387@jhu.edu </i>
     </p>
     <p>
-    Zihan Wang <i>zwang207@jh.edu </i>
+    Zihan Wang <i>zwang207@jhu.edu </i>
+    </p>
+    <p>
+    Xuan Zhu <i>zhuxuan1998@outlook.com </i>
     </p>
 
 </div>
