@@ -4,7 +4,7 @@ let User = require("../../models/user.model");
 const auth = require("../../middleware/auth");
 const SurveyDis = require("../../models/survey/surveyDis.model");
 
-router.route("/").get((req, res) => {
+router.get("/", auth, (req, res) => {
   Survey.find()
     .then((surveys) => res.json(surveys))
     .catch((err) => res.status(400).json("Error: " + err));
