@@ -21,13 +21,15 @@ export default function SurveyList() {
   const { userData } = useContext(UserContext)
   const [surveys, setSurveys] = useState([])
 
-  useEffect(async () => {
-    const response = await axios.get('/API/survey/', {
-      headers: {
-        'x-auth-token': userData.token
-      }
-    })
-    setSurveys(response.data)
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get('/API/survey/', {
+        headers: {
+          'x-auth-token': userData.token
+        }
+      })
+      setSurveys(response.data)
+    })();
   }, [])
 
   const deleteSurvey = async (id) => {

@@ -4,8 +4,10 @@ let User = require("../../models/user.model");
 const auth = require("../../middleware/auth");
 const SurveyDis = require("../../models/survey/surveyDis.model");
 
-router.get("/", auth, (req, res) => {
-  Survey.find()
+router.get("/", auth, async (req, res) => {
+  const distIDList = await SurveyDis.find({ 'docID': req.user }).distinct('_id')
+
+  Survey.find({ "surveyDisID": { "$in": distIDList } })
     .then((surveys) => res.json(surveys))
     .catch((err) => res.status(400).json("Error: " + err));
 });

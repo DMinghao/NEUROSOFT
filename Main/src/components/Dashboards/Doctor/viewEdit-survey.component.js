@@ -86,7 +86,8 @@ export default function ViewEditSurvey(props){
           </table>
         </div>
         <br />
-        <div>
+        {Other}
+        {/* <div>
           <h4>Details</h4>
           <table className="table">
             <thead className="thead-dark">
@@ -97,7 +98,7 @@ export default function ViewEditSurvey(props){
             </thead>
             <tbody>{itemList()}</tbody>
           </table>
-        </div>
+        </div> */}
       </div>
     );
 }
