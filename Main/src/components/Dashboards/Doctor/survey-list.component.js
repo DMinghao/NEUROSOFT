@@ -7,9 +7,9 @@ import UserContext from '../../../context/UserContext'
 const Survey = (props) => (
   <tr>
     <td>{props.survey.paID}</td>
-    <td>{JSON.parse(props.survey.result).name}</td>
-    <td>{Date(JSON.parse(props.survey.result).birthdate)}</td>
-    <td>{JSON.parse(props.survey.result).symptom}</td>
+    <td>{props.survey.name}</td>
+    <td>{new Date(Date.parse(props.survey.updatedAt)).toLocaleString()}</td>
+    {/* <td>{JSON.parse(props.survey.result).symptom}</td> */}
     <td>
       <Link to={"/viewEdit/" + props.survey._id}> View </Link>|
       <a href="#" onClick={() => { props.deleteSurvey(props.survey._id) }}> Delete </a>
@@ -40,6 +40,7 @@ export default function SurveyList() {
   }
 
   const surveyList = () => {
+    // console.log(surveys)
     return surveys.map(currentSurvey => {
       return <Survey survey={currentSurvey} deleteSurvey={deleteSurvey} key={currentSurvey._id} />;
     })
@@ -54,8 +55,8 @@ export default function SurveyList() {
           <tr >
             <th>Patient ID</th>
             <th>Name</th>
-            <th>DOB</th>
-            <th>symptom(s)</th>
+            <th>Finish Date</th>
+            {/* <th>symptom(s)</th> */}
             <th>Action</th>
           </tr>
         </thead>
