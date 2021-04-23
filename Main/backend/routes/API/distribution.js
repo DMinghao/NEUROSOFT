@@ -102,4 +102,20 @@ router.post("/pendingsurvey", auth, async (req, res) => {
       .json({ error: error.message });
   }
 });
+
+router.post("/gettemp", auth, async (req, res) =>{
+  try{
+    const {distID} = req.body;
+    const dist = await surveyDis.findById(distID);
+    const tempID = dist.tempID;
+    const temp = await Temp.findById(tempID);
+    res.status(200).json(temp);
+  }catch (error) {
+    console.log(error)
+    res
+      .status(500)
+      .json({ error: error.message });
+  }
+});
+
 module.exports = router;

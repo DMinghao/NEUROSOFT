@@ -76,12 +76,12 @@ NEUROSOFT
     * For Windows
 
         ```bash
-        start cmd.exe /c "cd Main/backend && npm i" && start cmd.exe /c "cd Main && npm i"
+        start cmd.exe /c "cd Main/backend && npm i" && start cmd.exe /c "cd Main && npm i" && start cmd.exe /c "cd Main && npm i -g nodemon"
         ```
     * For MAC
 
         ```bash
-        cd Main ; sudo npm i ; cd backend ; sudo npm i
+        cd Main ; sudo npm i ; cd backend ; sudo npm i ; sudo npm i -g nodemon
         ```
 
 ### Running the platform 

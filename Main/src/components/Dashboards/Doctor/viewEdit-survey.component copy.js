@@ -1,47 +1,66 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import UserContext from "../../../context/UserContext";
-import * as Survey from "survey-react";
 import "react-datepicker/dist/react-datepicker.css";
 
+const contentFormat = (obj) => {
+  if (obj.toString().startsWith("data:image")) return <img src={obj.toString()}/>
+  else return obj.toString()
+}
+
+const Item = (props) => (
+  <tr>
+    <th>{props.item.k}</th>
+    <td>{contentFormat(props.item.o)}</td>
+  </tr>
+);
 
 export default function ViewEditSurvey(props) {
-  const { userData } = useContext(UserContext);
   const [ID, setID] = useState("");
   const [Name, setName] = useState("");
-  const [updatedAt, setUpdatedAt] = useState(new Date());
-  const [temp, setTemp] = useState({})
-  const [result, setResult] = useState({})
-  const [surveyWindow, setSurveyWindow] = useState()
+  const [DOB, setDOB] = useState(new Date());
+  const [Symptoms, setSymptoms] = useState([]);
+  const [Other, setOther] = useState({});
   const history = useHistory();
   const id = props.match.params.id;
-  Survey.StylesManager.applyTheme("default");
 
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get("/API/survey/" + id);
       const r = JSON.parse(response.data.result);
+      var result = {};
+      Object.keys(r).forEach((key) => {
+        if (
+          key !== "id" &&
+          key !== "name" &&
+          key !== "birthdate" &&
+          key !== "symptom"
+        )
+          result[key] = r[key];
+      });
       setID(response.data._id);
       setName(r.name);
-      setUpdatedAt(response.data.updatedAt);
-      const distID = response.data.surveyDisID;
-      const template = await axios.post(
-        "/API/distribution/gettemp",
-        {
-          distID: distID,
-        },
-        {
-          headers: {
-            "x-auth-token": userData.token,
-          },
-        }
-      );
-      setTemp(JSON.parse(template.data.template));
-      setResult(JSON.parse(response.data.result)); 
+      setDOB(Date(r.birthdate));
+      setSymptoms(r.symptom);
+      setOther(result);
+      console.log(response.data)
     };
     getData();
   }, []);
+
+  const itemList = () => {
+    const obj = Other;
+    // console.log(JSON.stringify(obj));
+    return Object.keys(obj).map(function (key) {
+      // console.log(key + " -> " + obj[key]);
+      var i = {
+        k: key,
+        o: obj[key],
+      };
+      // console.log(i)
+      return <Item item={i} key={i.k} />;
+    });
+  };
 
   return (
     <div>
@@ -62,13 +81,15 @@ export default function ViewEditSurvey(props) {
               <th>ID</th>
               <th>Name</th>
               <th>Finish Date</th>
+              <th>symptom(s)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>{ID}</td>
               <td>{Name}</td>
-              {/* <td>{updatedAt}</td> */}
+              <td>{Date(DOB)}</td>
+              <td>{Symptoms}</td>
             </tr>
           </tbody>
         </table>
@@ -81,9 +102,15 @@ export default function ViewEditSurvey(props) {
       <br />
       <div>
         <h4>Details</h4>
-        <Survey.Survey model={new Survey.Model(temp)} data = {result} mode = 'display'/>
-        {/* <div id="surveyElement" style="display:inline-block;width:100%;"></div> */}
-        <div id="surveyResult"></div>
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th>Subject</th>
+              <th>Content</th>
+            </tr>
+          </thead>
+          <tbody>{itemList()}</tbody>
+        </table>
       </div>
     </div>
   );
