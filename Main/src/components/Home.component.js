@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import Axios from "axios";
 
-import * as url from './thocc-bristol-1-.jpeg' 
+import * as url from './Building-Doctor-Patient-Trust.jpg' 
 
 export default function Home() {
 
