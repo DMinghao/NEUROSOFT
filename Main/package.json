@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.3",
+    "bootstrap-slider": "^11.0.2",
     "date-fns": "^2.15.0",
     "jquery": "^3.5.1",
     "jsonwebtoken": "^8.5.1",
