@@ -2,17 +2,18 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import Axios from "axios";
+import './About.css';
 
 export default function About() {
 
 return(
-<div>
+<div class ="about" >
     <h3>About Page
         
     </h3>
     <br></br>
     <p>
-        NeuroSoft is a medical surveying platform that allows surgeons from <a href="https://hartfordhealthcare.org">Hardford HealthCare</a> to create, manage, and distribute medical treatment admission surveys to new and returning patients. 
+        NeuroSoft is a medical surveying platform that allows surgeons from <a href="https://hartfordhealthcare.org">Hartford HealthCare</a> to create, manage, and distribute medical treatment admission surveys to new and returning patients. 
     </p>
     <br></br>
     <h5>
