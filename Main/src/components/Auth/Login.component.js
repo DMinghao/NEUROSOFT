@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
-
+import './Login.css';
 export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -44,10 +44,10 @@ export default function Login() {
 
     return (
         <div>
-            <h3>Login</h3>
+            <h3 className="font">Login</h3>
             <form onSubmit={submit}>
                 <div className="form-group">
-                    <label htmlFor="login-email">Email </label>
+                    <label htmlFor="login-email">Email</label>
                     <input id="login-email"
                         type="email"
                         required
@@ -57,7 +57,7 @@ export default function Login() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="login-password">Password </label>
+                    <label htmlFor="login-password">Password</label>
                     <input type="password"
                         id="login-password"
                         required
