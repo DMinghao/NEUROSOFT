@@ -9,7 +9,7 @@ export default function Home() {
 return(
  
   <div class="container">
-  <img src={url.default} alt="Hospital Building" width="100%" height="100%"/>
+  <img src={url.default} alt="Hospital Building" width="50%" height="100%"/>
   <div class="centered">
       <h2>Welcome to NeuroSoft Medical Surveying Platform</h2>
       <br></br>
