@@ -1,20 +1,41 @@
-img {
+.homeImg img {
     opacity: 1;
+    float: left;
+    width: 60%;
+    height:auto;
+    position:relative;
+    left: 0px;
+    top:0px;
+    z-index:998;
+    -webkit-mask-image: -webkit-gradient(linear, left top, right top, 
+    from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    ;
   }
 
 .container {
-    position: relative;
+    /* position: absolute; */
     text-align: center;
     color: white;
   }
 
-.centered {
-    position: absolute;
-    top: 15%;
-    left: 50%;
+.header {
+    position: relative;
+    text-align: center;
+    top: 0%;
+    left: 20%;
     transform: translate(-50%, -50%);
     color:black;
+    z-index:998;
   }
+
+.intro {
+  position: relative;
+  text-align:left;
+  right:0px;
+  top:15px;
+  z-index:998;
+  color:black;
+}
 
 /*.btn {
     background-color: #04AA6D;
