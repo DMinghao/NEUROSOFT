@@ -9,20 +9,20 @@ import { Link } from 'react-router-dom';
 export default function Home() {
 return(
  
-  <div class="container">
-  <div class ="homeImg">
+  <div className="container">
+  <div className ="homeImg">
     < img src={url.default} alt="Hospital Building" width="100%" height="100%" />
   </div>
   
-  <div class="header">
+  <div className="header">
   <br/><br/><br/><br/>
     <h4>Manage patient data through highly customizable surveys </h4>
   </div>
-  <div class="intro">
+  <div className="intro">
     <p>With the help of AI and NLP technologies, surgeons can automatically generate medical reports with documented patient surveying.</p >
    
     <p>This application is built as a type of online responsive platform, where patients can fill out prepared surveys from doctors anywhere they want.</p >
-    <a class="button button-ghost" href=""></a >
+    <a className="button button-ghost" href=""></a >
   </div>
 </div> 
 

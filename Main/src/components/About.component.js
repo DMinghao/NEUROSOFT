@@ -49,7 +49,7 @@ return(
             Advisor
         </h5>
         <p>
-            Prof. Ahmad Ajakh
+            <a href="https://carey.jhu.edu/faculty/faculty-directory/ahmad-ajakh-phd">Ahmad Ajakh, PhD</a>
         </p>
         <br></br>
         <h5>
