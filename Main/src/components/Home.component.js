@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext";
@@ -9,18 +10,8 @@ export default function Home() {
 return(
  
   <div class="container">
-<<<<<<< Updated upstream
-  <img src={url.default} alt="Hospital Building" width="50%" height="100%"/>
-  <div class="centered">
-      <h2>Welcome to NeuroSoft Medical Surveying Platform</h2>
-      <br></br>
-      <Link to="/login" style={{ color: "#ffffff", margin: "0.3rem" }}>
-                  <button className="btn btn-outline-primary">Login</button>
-                </Link>
-=======
   <div class ="homeImg">
     <img src={url.default} alt="Hospital Building" width="100%" height="100%" />
-  </div>
   
   <div class="header">
   <br/><br/><br/><br/>
@@ -30,9 +21,14 @@ return(
     <p>With the help of AI and NLP technologies, surgeons can automatically generate medical reports with documented patient surveying.</p>
    
     <p>This application is built as a type of online responsive platform, where patients can fill out prepared surveys from doctors anywhere they want.</p>
-    <a class="button button-ghost" href=""></a>
->>>>>>> Stashed changes
+    {/* <a class="button button-ghost" href=""></a> */}
+    <p>With the help of AI and NLP technologies, surgeons can automatically generate medical reports with documented patient surveying.</p >
+   
+    <p>This application is built as a type of online responsive platform, where patients can fill out prepared surveys from doctors anywhere they want.</p >
+    <a class="button button-ghost" href=""></a >
+
   </div>
+</div>
 </div> 
 
 )
