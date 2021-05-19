@@ -1,32 +1,21 @@
-
-  .homeImg img {
-    opacity: 1;
-    float: left;
-    width: 60%;
-    height:auto;
-    position:relative;
-    left: 0px;
-    top:0px;
-    z-index:998;
-    -webkit-mask-image: -webkit-gradient(linear, left top, right top, 
-    from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-    ;
-  }
+.homeImg img {
+  opacity: 1;
+  float: left;
+  width: 100%;
+  height:auto;
+  position:relative;
+  left: 0px;
+  top:0px;
+  z-index:998;
+  -webkit-mask-image: -webkit-gradient(linear, left top, right top, 
+  from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  ;
+}
 
 .container {
     /* position: absolute; */
     text-align: center;
     color: white;
-  }
-
-.header {
-    position: relative;
-    text-align: center;
-    top: 0%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    color:black;
-    z-index:998;
   }
 
 .intro {
@@ -38,12 +27,26 @@
   color:black;
 }
 
-/*.btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-  }*/
+/* .steps img{
+  float: left;
+  width: 20%;
+  height:auto;
+  position:relative;
+  left: 0px;
+  top:0px;
+  z-index:998;
+} */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+                }
+
+@media only screen and (min-width: 601px) {
+.column1  {
+float: left;
+width: 70%;  /* 30% is approximately 270 pixels */
+padding: 20px;
+text-align: center;
+}
+}
