@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import './homepage.css';
+import './About.component.js';
 
 export default function Navbar() {
 

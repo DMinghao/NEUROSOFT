@@ -4,6 +4,7 @@ import UserContext from "../context/UserContext";
 import Axios from "axios";
 import './About.css';
 import * as url from './about_us.png'
+import { Link } from 'react-router-dom';
 export default function About() {
 
 return(
