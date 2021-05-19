@@ -15,7 +15,7 @@
 .container {
     /* position: absolute; */
     text-align: center;
-    color: white;
+    color: black;
   }
 
 .intro {
@@ -49,4 +49,10 @@ width: 70%;  /* 30% is approximately 270 pixels */
 padding: 20px;
 text-align: center;
 }
+.column2  {
+  float: left;
+  width: 25%;  /* 30% is approximately 270 pixels */
+  padding: 20px;
+  text-align: center;
+  }
 }
