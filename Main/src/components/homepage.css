@@ -56,3 +56,14 @@ text-align: center;
   text-align: center;
   }
 }
+
+.box1{
+  border-radius: 5px;
+  background-color: #d5f1f8;
+  padding: 10px;
+}
+.box2{
+  border-radius: 5px;
+  background-color: #dafae1;
+  padding: 10px;
+}

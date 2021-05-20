@@ -37,8 +37,9 @@ return(
   
   </div>
 
-
+  
   <div className ="row">
+    <div className="box1">
     <div className ="column2">
       <img src={url2.default} alt="Patient" width="100%" height="100%" class="center"/>
     </div>
@@ -66,8 +67,10 @@ return(
       <img src={url7.default} alt="Patient" width="30%" height="30%"class="center"/>
       <p>Check Ai-powered auto-generated reports based on patient’s survey</p>
     </div>
+    </div>
   </div>
   <div className ="row">
+    <div className="box2">
     <div className ="column2">
       <img src={url3.default} alt="Patient" width="100%" height="100%" class="center"/>
     </div>
@@ -98,9 +101,15 @@ return(
       <img src={url7.default} alt="Patient" width="30%" height="30%"class="center"/>
       <p>Keep the survey records in your account, then your doctor will know you better :)</p>
     </div>
+    </div>
   </div>
-
+  <br></br>
+  <br></br>
+    <p>
+      © 2021 NeuroSoft Platform – All rights reserved
+    </p>
 </div>
+
 
 )
 }

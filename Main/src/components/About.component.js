@@ -78,7 +78,14 @@ return(
 
 
 
-</div>  
+</div> 
+<br></br>
+<br></br>
+    <div className="foot">
+        <p>
+            © 2021 NeuroSoft Platform – All rights reserved
+        </p>
+    </div> 
 </div>
 )
 }
