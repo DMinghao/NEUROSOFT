@@ -1,3 +1,4 @@
 {
-    "todo-tree.tree.showCountsInTree": true
+    "todo-tree.tree.showCountsInTree": true,
+    "python.pythonPath": "C:\\Program Files\\Python\\Python36\\python.exe"
 }

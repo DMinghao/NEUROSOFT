@@ -3,7 +3,8 @@ let Survey = require("../../models/survey/survey.model");
 let User = require("../../models/user.model");
 const auth = require("../../middleware/auth");
 const SurveyDis = require("../../models/survey/surveyDis.model");
-const gpt2Path = "./middleware/GPT2/main.py"
+const gpt2Main = "main.py"
+const pythonPath = "D:/duter/Documents/GitHub/NEUROSOFT/Main/backend/middleware/GPT2/venv/Scripts/python.exe"
 
 router.get("/", auth, async (req, res) => {
   const distIDList = await SurveyDis.find({ docID: req.user }).distinct("_id");
@@ -20,7 +21,10 @@ router.route("/add").post((req, res) => {
   var summary = "Pending Summary...";
 
   const execSync = require("child_process").execSync;
-  const pythonProcess = execSync(`python ${gpt2Path} generateSummary ${result}`);
+  const pythonProcess = execSync(
+    `${pythonPath} ${gpt2Main} generateSummary ${result}`, 
+    {cwd:`${__dirname}/../../middleware/GPT2`}
+    ;
   summary = pythonProcess.toString("utf8")
 
   // console.log(req.body.user)
