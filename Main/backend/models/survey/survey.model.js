@@ -4,6 +4,9 @@ const surveySchema = new Schema({
   result : {
     type: String
   },
+  summary : {
+    type: String
+  },
   paID : {
     type: Schema.Types.ObjectId, 
     ref : "users", 

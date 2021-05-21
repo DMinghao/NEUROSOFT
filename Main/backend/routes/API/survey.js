@@ -3,11 +3,12 @@ let Survey = require("../../models/survey/survey.model");
 let User = require("../../models/user.model");
 const auth = require("../../middleware/auth");
 const SurveyDis = require("../../models/survey/surveyDis.model");
+const gpt2Path = "./middleware/GPT2/main.py"
 
 router.get("/", auth, async (req, res) => {
-  const distIDList = await SurveyDis.find({ 'docID': req.user }).distinct('_id')
+  const distIDList = await SurveyDis.find({ docID: req.user }).distinct("_id");
 
-  Survey.find({ "surveyDisID": { "$in": distIDList } })
+  Survey.find({ surveyDisID: { $in: distIDList } })
     .then((surveys) => res.json(surveys))
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -16,10 +17,17 @@ router.route("/add").post((req, res) => {
   const result = JSON.stringify(req.body.result);
   const userId = req.body.user;
   const distId = req.body.distID;
+  var summary = "Pending Summary...";
+
+  const execSync = require("child_process").execSync;
+  const pythonProcess = execSync(`python ${gpt2Path} generateSummary ${result}`);
+  summary = pythonProcess.toString("utf8")
+
   // console.log(req.body.user)
   const newSurvey = new Survey({
     paID: userId,
     result: result,
+    summary: summary,
     surveyDisID: distId,
   });
   // console.log(newSurvey)
@@ -63,11 +71,6 @@ router.route("/:id").delete((req, res) => {
 router.route("/update/:id").post((req, res) => {
   Survey.findById(req.params.id)
     .then((survey) => {
-      // exercise.username = req.body.username;
-      // exercise.description = req.body.description;
-      // exercise.duration = Number(req.body.duration);
-      // exercise.date = Date.parse(req.body.date);
-
       survey
         .save()
         .then(() => res.json("Survey updated!"))

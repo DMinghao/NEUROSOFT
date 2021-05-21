@@ -10,6 +10,7 @@ export default function ViewEditSurvey(props) {
   const { userData } = useContext(UserContext);
   const [ID, setID] = useState("");
   const [Name, setName] = useState("");
+  const [Summary, setSummary] = useState("");
   const [updatedAt, setUpdatedAt] = useState(new Date());
   const [temp, setTemp] = useState({})
   const [result, setResult] = useState({})
@@ -24,6 +25,7 @@ export default function ViewEditSurvey(props) {
       const r = JSON.parse(response.data.result);
       setID(response.data._id);
       setName(r.name);
+      setSummary(response.data.summary)
       setUpdatedAt(response.data.updatedAt);
       const distID = response.data.surveyDisID;
       const template = await axios.post(
@@ -68,7 +70,7 @@ export default function ViewEditSurvey(props) {
             <tr>
               <td>{ID}</td>
               <td>{Name}</td>
-              {/* <td>{updatedAt}</td> */}
+              <td>{updatedAt.toString()}</td>
             </tr>
           </tbody>
         </table>
@@ -76,13 +78,12 @@ export default function ViewEditSurvey(props) {
       <br />
       <div>
         <h4>Summary</h4>
-        <p>{}</p>
+        <p>{Summary}</p>
       </div>
       <br />
       <div>
         <h4>Details</h4>
         <Survey.Survey model={new Survey.Model(temp)} data = {result} mode = 'display'/>
-        {/* <div id="surveyElement" style="display:inline-block;width:100%;"></div> */}
         <div id="surveyResult"></div>
       </div>
     </div>

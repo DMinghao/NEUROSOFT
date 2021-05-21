@@ -79,6 +79,7 @@ Design/*.vpp.*
 .vscode/
 training_checkpoints/
 models/
-checkpoint/
+AI/checkpoint/
 data/
 venv/
+Main/backend/middleware/GPT2/checkpoint/run1/model-2000.data-00000-of-00001
