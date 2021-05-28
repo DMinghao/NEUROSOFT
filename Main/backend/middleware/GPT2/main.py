@@ -1,9 +1,17 @@
-#! python3.7
+#! python37
 import sys
-# import tensorflow as tf
 import gpt_2_simple as gpt2
+from os import path
+import requests
+
+gpt2ModelDownload = "https://drive.google.com/uc?export=download&id=1UFY2AmRR5GFFWVe2N7-sqV5hj1SFaBnf"
+gpt2ModelLocalPath = "./checkpoint/run1/model-2000.data-00000-of-00001"
 
 def generateSummary(arg): 
+    if not path.exists(gpt2ModelLocalPath): 
+        r = requests.get(gpt2ModelDownload, allow_redirects=True)
+        open(gpt2ModelLocalPath, 'wb').write(r.content)
+    
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess, run_name='run1')
     text = gpt2.generate(sess,

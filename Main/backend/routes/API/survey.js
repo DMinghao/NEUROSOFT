@@ -24,7 +24,7 @@ router.route("/add").post((req, res) => {
   const pythonProcess = execSync(
     `${pythonPath} ${gpt2Main} generateSummary ${result}`, 
     {cwd:`${__dirname}/../../middleware/GPT2`}
-    ;
+  );
   summary = pythonProcess.toString("utf8")
 
   // console.log(req.body.user)
