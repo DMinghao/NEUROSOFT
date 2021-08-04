@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 router.post("/add", auth, async (req, res) => {
   const { docID, tempID, patients, dueDate } = req.body;
 
+  // create new distribution
   const newDis = new surveyDis({
     docID: docID,
     tempID: tempID,

@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+// use token to check if user has authentication
 const auth = (req, res, next) => {
   try {
     // check if there is a token
@@ -18,9 +19,11 @@ const auth = (req, res, next) => {
         .json({ msg: "Token authentication failed, authorization denied" });
     }
 
+    // user has authentication
     req.user = verified.id;
     next();
 
+  // catch err and report it
   } catch (err) {
     res
       .status(500)
