@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 const surveyTempSchema = new Schema({
   title: {
     type: String,
-    required: true, 
-    // unique: true
+    required: true
   }, 
   date:{
     type: String,
@@ -24,8 +24,7 @@ const surveyTempSchema = new Schema({
     requried: true
   }, 
   questionCount : {  // maybe 0
-    type: Number,
-    // requried: true
+    type: Number
   }
 }, {
   timestamps: true

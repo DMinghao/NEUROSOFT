@@ -50,9 +50,6 @@ function App() {
     checkLoggedIn();
   }, []);
 
-
-
-
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
     <Router>

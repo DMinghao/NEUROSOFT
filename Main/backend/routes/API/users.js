@@ -166,8 +166,8 @@ router.get("/allRelated", auth, async (req, res) => {
 });
 
 // link a doctor and a patient
-//modify doctor's account document to add patient's user id
-//modify patient's account document to add doctor's user id
+// modify doctor's account document to add patient's user id
+// modify patient's account document to add doctor's user id
 router.post("/linkuser", auth, async (req, res) => {
   try {
     // get the doctor and the patient
@@ -208,12 +208,12 @@ router.post("/linkuser", auth, async (req, res) => {
       )
 
       return res.status(200).json()
+    // can not find doctor or patient user
     } else {
       return res
         .status(400)
         .json({ msg: "User Not found" });
     }
-
   } catch (err) {
     res
       .status(500)
@@ -222,8 +222,8 @@ router.post("/linkuser", auth, async (req, res) => {
 })
 
 // Unlink a doctor and a patient
-//modify doctor's account document to delete patient's user id
-//modify patient's account document to delete doctor's user id
+// modify doctor's account document to delete patient's user id
+// modify patient's account document to delete doctor's user id
 router.post("/unlinkuser", auth, async (req, res) => {
   try {
     // get the doctor and the patient
@@ -257,12 +257,14 @@ router.post("/unlinkuser", auth, async (req, res) => {
       )
 
       return res.status(200).json()
+
+    // no link bewteen the doctor and patient
     } else {
       return res
         .status(400)
         .json({ msg: "Link does not exist" });
     }
-    
+  
   } catch (err) {
     res
       .status(500)
@@ -275,8 +277,11 @@ router.get("/AllPa", auth, async (req, res) => {
   const all = await User.find(
     { userType: "patient" },
     function (err, result) {
+  
       if (err) {
         console.log(err);
+
+      // get the list and return it
       } else {
         const docs = result.map(({ _doc }) => _doc)
         const out = docs.map(({ password, createdAt, updatedAt, __v, ...rest }) => rest)
@@ -290,8 +295,11 @@ router.get("/AllDoc", auth, async (req, res) => {
   const all = await User.find(
     { userType: "doctor" },
     function (err, result) {
+  
       if (err) {
         console.log(err);
+
+      // get the list and return it
       } else {
         const docs = result.map(({ _doc }) => _doc)
         const out = docs.map(({ password, createdAt, updatedAt, __v, ...rest }) => rest)

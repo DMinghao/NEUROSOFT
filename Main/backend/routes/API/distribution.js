@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 router.post("/add", auth, (req, res) => {
   const { docID, tempID, patients, dueDate } = req.body;
 
+  // create new distribution
   const newDis = new surveyDis({
         docID: docID,
         tempID: tempID,
@@ -16,6 +17,7 @@ router.post("/add", auth, (req, res) => {
         dueDate : dueDate? dueDate : undefined
       })
 
+  // save new distribution
   newDis
     .save()
     .then((createdDis) =>
@@ -23,7 +25,5 @@ router.post("/add", auth, (req, res) => {
     )
     .catch((err) => res.status(400).json("Error: " + err));
 });
-
-
 
 module.exports = router;
