@@ -11,9 +11,9 @@ const surveySchema = new Schema({
     ref : "users", 
     required : true
   },
-  surveyTempID : {
+  surveyDisID : {
     type: Schema.Types.ObjectId,
-    ref: "surveyTemp", 
+    ref: "SurveyDis", 
     // required : true,
   } // add survey distribution
 }, {

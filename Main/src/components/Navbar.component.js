@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import './homepage.css';
+import './About.component.js';
 
 export default function Navbar() {
 
@@ -16,14 +18,13 @@ export default function Navbar() {
     localStorage.setItem("auth-token", "");
     history.push("/");
   };
-
   return (
     <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
       <Link to="/" className="navbar-brand">NeuroSoft Platform</Link>
       <div className="collpase navbar-collapse">
         <ul className="navbar-nav mr-auto">
           <li className="navbar-item">
-            <Link to="/" className="nav-link">Home</Link>
+           
           </li>
           <li className="navbar-item">
             <Link to="/about" className="nav-link">About Us</Link>
@@ -64,3 +65,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+  

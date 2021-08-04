@@ -76,3 +76,9 @@ Design/*.vpp.vbak
 Design/*.vpp.*
 
 /build
+.vscode/
+training_checkpoints/
+models/
+checkpoint/
+data/
+venv/

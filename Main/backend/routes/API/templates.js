@@ -60,13 +60,13 @@ router.post("/add", auth, async (req, res) => {
   }
 
 });
-
+ 
 // view template
-router.post("/view", async (req, res) => {
+router.post("/view", auth, async (req, res) => {
   try {
     // get elements to validate the view request
-    const temp = await Temp.findById(req.template);
-
+    const temp = await Temp.findById(req.body.template);
+    
     // return template need to be viewed
     res.json(temp);
 
@@ -92,12 +92,13 @@ router.post("/edit", async (req, res) => {
 
 });
 
+//TODO await for testing 
 // save a changed template
 router.post("/save", async (req, res) => {
   try {
     // get elements to validate the save request
     const { title, docID, template } = req.body;
-    const temp = await Temp.findById(req.template);
+    // const temp = await Temp.findById(req.template);
 
     // check all elelments for a new template
     if (!title || !template) {
@@ -143,7 +144,7 @@ router.post("/mytemplates", auth, async (req, res) => {
   try {
     const {docID} = req.body; 
     var list = []
-    await Temp.find({'docID':docID}, (err, docs) =>{
+    Temp.find({'docID':docID}, (err, docs) =>{
       list = docs
     }).then(()=>{
       list = list.map(x => {

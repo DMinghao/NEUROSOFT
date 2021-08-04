@@ -49,7 +49,7 @@ export default function TemplateCreator({TemplateJSON}) {
         // surveyCreator.JSON = template //current harcoded template 
     }, [])
 
-    const saveMySurvey = async () => {
+    const saveMySurvey = () => {
         // console.log(surveyCreator.text);
         const title = JSON.parse(surveyCreator.text)['title']
         const payload = {
@@ -57,7 +57,7 @@ export default function TemplateCreator({TemplateJSON}) {
             docID : userData.user.id,
             template : JSON.stringify(surveyCreator.text)
         }
-        await axios.post(
+        axios.post(
             '/API/templates/add', 
             payload,
             {headers: {

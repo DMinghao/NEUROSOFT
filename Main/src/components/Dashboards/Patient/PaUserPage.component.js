@@ -4,7 +4,9 @@ import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import UserContext from "../../../context/UserContext";
 import PaDashSideNav from "./PaDashSideNav.component"
+import CompletedSurvey from './CompletedSurvey.component'
 import PaDocList from "./PaDocList.component";
+import PendingSurvey from "./PendingSurvey.component"
 
 export default function PaUserPage() {
     // const history = useHistory();
@@ -28,6 +30,10 @@ export default function PaUserPage() {
                 return dashContent();
             case 'MyDoctors':
                 return <PaDocList/>
+            case 'CompletedSurvey':
+                return <CompletedSurvey/>
+            case 'PendingSurvey': 
+                return <PendingSurvey/>
             default:
                 return dashContent();
         }

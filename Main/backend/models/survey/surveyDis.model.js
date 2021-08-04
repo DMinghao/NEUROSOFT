@@ -28,7 +28,7 @@ const surveyDisSchema = new Schema(
     },
     dueDate : {
       type : Date, 
-      default: (Date.now() + defaultDue).toString()
+      // default: (Date.now() + defaultDue).toString()
     },
     patients: [pas],
   },
