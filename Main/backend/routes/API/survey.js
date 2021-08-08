@@ -60,19 +60,22 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/:id").get((req, res) => {
+// get survey by id
+router.route('/:id').get((req, res) => {
   Survey.findById(req.params.id)
     .then((survey) => res.json(survey))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/:id").delete((req, res) => {
+// delete survey by id
+router.route('/:id').delete((req, res) => {
   Survey.findByIdAndDelete(req.params.id)
     .then(() => res.json("Survey deleted."))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/update/:id").post((req, res) => {
+// update survey by id
+router.route('/update/:id').post((req, res) => {
   Survey.findById(req.params.id)
     .then((survey) => {
       survey

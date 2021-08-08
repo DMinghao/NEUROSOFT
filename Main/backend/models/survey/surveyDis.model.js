@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const defaultDue = 7*24*60*60*1000 //7days
+const defaultDue = 7*24*60*60*1000 // 7 days
 
 const pas = mongoose.Schema(
   {

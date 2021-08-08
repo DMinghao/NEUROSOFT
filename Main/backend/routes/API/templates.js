@@ -12,10 +12,6 @@ router.post("/add", auth, async (req, res) => {
     // get elements to validate the add request
     const { title, docID, template } = req.body;  // mising || !questionCount
 
-    // console.log(title)
-    // console.log(docID)
-    // console.log(template)
-
     // check all elelments for a new template
     if (!title || !docID || !template) {
       return res
